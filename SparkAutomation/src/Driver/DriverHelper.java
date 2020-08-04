@@ -413,6 +413,12 @@ public class DriverHelper
 
 	}
 
+	public String CurrentUrl()
+	{
+		String cuurl=driver.getCurrentUrl(); 
+		return cuurl;
+	}
+	
 	public void Clickon(WebElement el) throws InterruptedException
 	{
 		// Thread.sleep(3000);

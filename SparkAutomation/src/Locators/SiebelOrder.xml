@@ -243,7 +243,7 @@
   <TextNetworkReference>//table[@summary="Pick Network Reference"]//tr[2]/td[2]</TextNetworkReference> 
   <OrderDates>//a[text()='Order Dates']</OrderDates> 
   <OrderSignedDate>//input[@aria-label="Order Signed Date"]</OrderSignedDate> 
-  <CustomerRequestedDate>//input[@aria-labelledby="Customer_Requested_Date1_Label"]</CustomerRequestedDate>
+  <CustomerRequestedDate>//input[@aria-label='Customer Requested Date']</CustomerRequestedDate>
   <ColtActualDate>//input[@aria-labelledby="COLT_Actual_RFS_Date_Label"]</ColtActualDate> 
   <OrderReceivedDate>//input[@aria-labelledby="COLT_Order_Received_Date_Label"]</OrderReceivedDate> 
   <Billing>//a[text()='Billing']</Billing> 
