@@ -15,8 +15,6 @@ import org.testng.annotations.DataProvider;
 
 public class DataReader {
 	
-	//String filepath="src//Data//NewInputData.xlsx";
-	//String filepath="src//Data//NewInputDataRfs.xlsx";
 	
 	@DataProvider(name="NewOrderOnnet", parallel=true)
 	public static Object[][] NewOrder() throws IOException
@@ -25,7 +23,7 @@ public class DataReader {
 		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheetAt(0);
+		 XSSFSheet sheet = workbook.getSheet("New");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
@@ -692,7 +690,6 @@ public class DataReader {
 	
 	@DataProvider(name="Mode", parallel=true)
 	public static Object[][] Mode() throws IOException
-
 	{
 	
 		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
@@ -708,7 +705,6 @@ public class DataReader {
 		 if(counter.getCell(1).toString().equals("Yes"))
 		 {
 			 totalrowrequired=totalrowrequired+1;
-		
 		 }
 		 
 		 }
