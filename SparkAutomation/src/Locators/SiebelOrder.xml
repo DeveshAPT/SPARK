@@ -569,7 +569,7 @@
   <PickSite>//button[text()='Pick Site']</PickSite> 
   <InsideDropdownValues>//li[text()='Data']</InsideDropdownValues>
   <CoverageEthernetAccess>//span[text()='Coverage']/..//input/following-sibling::span</CoverageEthernetAccess>
-  <DropOptions>//li[@class='ui-menu-item']</DropOptions>
+  <DropOptions>//ul[contains(@style,'block')]//li[@class='ui-menu-item']</DropOptions>
   <SaveEthernetAccess>//div[@id='colt-s-order-connection-header']//a[text()='Save']</SaveEthernetAccess> // added by Ayush
   <ServiceTypeEthernetAccess>(//span[text()='Service Type'])[2]/following-sibling::span</ServiceTypeEthernetAccess>
   <PickAccountValue>//div[contains(@style,'block')]//input[@aria-labelledby='PopupQuerySrchspec_Label']</PickAccountValue>
@@ -1045,7 +1045,7 @@
   <ClickSeibelOrder>//a[@name='Order Number']</ClickSeibelOrder>
   <ServiceOrderReferenceNo2>(//a[contains(@name,'Order Num')])[2]</ServiceOrderReferenceNo2>
   <AccessPortList>//tr[@class='colt-siteselection-datarow']</AccessPortList>
-  <RouterSpecificationSetting>(//span[contains(@class,'colt-oa-btn colt-oa-std-btn colt-oa-Primary-Child')])[2]</RouterSpecificationSetting>
+  <RouterSpecificationSetting>//span[text()='Router Specification']/parent::div/span[@class='colt-oa-btn colt-oa-std-btn colt-oa-Primary-Child']</RouterSpecificationSetting>
    <RouterSpecificationSettingPartial>(//span[contains(@class,'colt-oa-btn colt-oa-std-btn colt-oa-Secondary-Child')])[2]</RouterSpecificationSettingPartial>
  <OperationalAttribueClick>(//table[@summary="Operational Attributes"]//tr[contains(@class,'mandatory')]//td[4])[index]</OperationalAttribueClick>
  <OperationalAttributeText>//table[@summary="Operational Attributes"]//tr[contains(@class,'mandatory')]//td[4]/input</OperationalAttributeText>
