@@ -20,7 +20,7 @@ public class DataReader {
 	public static Object[][] NewOrder() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//InputDataRfs.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
 		 XSSFSheet sheet = workbook.getSheetAt(0);
@@ -28,12 +28,12 @@ public class DataReader {
 		 XSSFRow r;
 		 int rowindex=0;
 		 int totalrowrequired=0;
-		 for(int k=1;k<=sheet.getLastRowNum();k++){
+		 for(int k=1;k<=sheet.getLastRowNum();k++)
+		 {
 		 XSSFRow counter=sheet.getRow(k);
 		 if(counter.getCell(1).toString().equals("Yes"))
 		 {
 			 totalrowrequired=totalrowrequired+1;
-		
 		 }
 		 
 		 }
@@ -237,10 +237,10 @@ public class DataReader {
 	public static Object[][] Cancelled() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//InputDataRfs.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheetAt(9);
+		 XSSFSheet sheet = workbook.getSheetAt(0);
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
@@ -526,7 +526,7 @@ public class DataReader {
 	public static Object[][] Cease() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//InputDataRfs.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
 		 XSSFSheet sheet = workbook.getSheet("Cease");
@@ -599,10 +599,10 @@ public class DataReader {
 
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//InputDataRfs.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheetAt(3);
+		 XSSFSheet sheet = workbook.getSheet("ModFinal");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
