@@ -2802,8 +2802,8 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	}
 	public void enterMandatoryDetailsInMiddleApplet(Object[] InputData) throws Exception {
 		
-		Random rndm = new Random();
-		int rand_int1 = rndm.nextInt(1000);
+		//Random rndm = new Random();
+		//int rand_int1 = rndm.nextInt(1000);
 		switch (InputData[9].toString()) 
 		{
 		case "Ethernet Spoke": 
@@ -3364,9 +3364,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			MiddleAppTextBox("Total Number of DDIs",DDI);
 			
 			MiddleAppDropdown("Incoming DDI Digits",InputData[52].toString());
-			rand_int1 = rand.nextInt(10);
-			DDI=Integer.toString(rand_int1);
-			MiddleAppTextBox("Customer Default Number",DDI);
+			MiddleAppTextBox("Customer Default Number",Integer.toString(GetRandomNumber(10)));
 			
 			Save();
 			//ClickHereSave();*/
@@ -3541,20 +3539,21 @@ public class NewOrderOnnetHelper extends DriverHelper {
 				AEndDropdownSelection("Access Technology",InputData[55].toString());
 				AEndDropdownSelection("Building Type",InputData[56].toString());
 				AEndDropdownSelection("Customer Site Pop Status",InputData[57].toString());
-				AEndInputEnter("3rd Party Connection Reference",Integer.toString(rndm.nextInt(1000)));
-				AEndInputEnter("BCP Reference","AHYG-"+Integer.toString(rndm.nextInt(1000)));
-				AEndInputEnter("Site Name Alias",Integer.toString(rndm.nextInt(1000)));
+				
+				AEndInputEnter("3rd Party Connection Reference",Integer.toString(GetRandomNumber(1000)));
+				AEndInputEnter("BCP Reference","AHYG-"+GetRandomNumber(1000));
+				AEndInputEnter("Site Name Alias",Integer.toString(GetRandomNumber(1000)));
 				
 				AEndDropdownSelection("Install Time",InputData[58].toString());
 				
-				AEndDropdownSelection("Cabinet Type",InputData[59].toString());
-				AEndInputEnter("Cabinet ID",Integer.toString(rndm.nextInt(1000)));
-				AEndInputEnter("Shelf ID",Integer.toString(rndm.nextInt(1000)));
+				AEndDropdownSelection("Cabinet Type",Integer.toString(GetRandomNumber(1000)));
+				AEndInputEnter("Cabinet ID",Integer.toString(GetRandomNumber(1000)));
+				AEndInputEnter("Shelf ID",Integer.toString(GetRandomNumber(1000)));
 				ClickHereSave();
 				AlertAccept();
 				
-				AEndInputEnter("Slot ID",Integer.toString(rndm.nextInt(1000)));
-				AEndInputEnter("Physical Port ID",Integer.toString(rndm.nextInt(1000)));
+				AEndInputEnter("Slot ID",Integer.toString(GetRandomNumber(1000)));
+				AEndInputEnter("Physical Port ID",Integer.toString(GetRandomNumber(1000)));
 				AEndDropdownSelection("Presentation Interface",InputData[60].toString());
 				AEndDropdownSelection("Connector Type",InputData[61].toString());
 				AEndDropdownSelection("Fibre Type",InputData[62].toString());
@@ -3572,6 +3571,8 @@ public class NewOrderOnnetHelper extends DriverHelper {
 				RandomDropSelection("B","Site Name");
 				RandomDropSelection("B","Router Model");
 				ClickHereSave();
+				OpenTab("IP Details");
+				AEndDropdownSelection("IP Addressing Format","IPv4 format only");
 				
 			break;
 			
@@ -3750,15 +3751,6 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		    //Install *****
 		    AEndDropdownSelection("Install Time",InputData[59].toString());
 		}
-
-		//Need to Update 
-		/*Thread.sleep(10000);
-		WaitforElementtobeclickable(xml.getlocator("//locators/RouterSiteNameDropdownAccess"));
-		Clickon(getwebelement(xml.getlocator("//locators/RouterSiteNameDropdownAccess")));
-		Thread.sleep(5000);
-		WaitforElementtobeclickable(xml.getlocator("//locators/sitenamevaluevpn"));
-		Clickon(getwebelement(xml.getlocator("//locators/sitenamevaluevpn")));*/
-
 		RandomDropSelection("B","Site Name");
 	    ClickHereSave();
 
@@ -5214,12 +5206,12 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		System.out.println("Selection Item  : "+temp);
 		if(SiteSide.equalsIgnoreCase("A"))
 		{
-			Clickon(getwebelement(eleLoct));
+			//Clickon(getwebelement(eleLoct));
 			AEndDropdownSelection(DropdownName, temp);
 		}
 		else if(SiteSide.equalsIgnoreCase("B"))
 		{
-			Clickon(getwebelement(eleLoct));
+			//Clickon(getwebelement(eleLoct));
 			BEndDropdownSelection(DropdownName, temp);
 		}
 		waitForpageload();
