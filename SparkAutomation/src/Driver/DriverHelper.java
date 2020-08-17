@@ -171,7 +171,6 @@ public class DriverHelper
 		waitForpageload();
 		if (locator.startsWith("//") || locator.startsWith("("))
 		{
-
 			wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
 			// getwebelement(xml.getlocator("//locators/StandrdQuote"));
 			System.out.println("Code for Loading");
