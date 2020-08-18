@@ -412,6 +412,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 
 	public void openServiceOrderNumber() throws Exception {
 		ServiceOrder.set(Gettext(getwebelement(xml.getlocator("//locators/ServiceOrderReferenceNo"))));
+		System.out.println("Service Order number : "+ServiceOrder.get());
 		ExtentTestManager.getTest().log(LogStatus.PASS,
 				" Step: Generated Service Order Reference No: " + ServiceOrder.get());
 		Log.info(ServiceOrder.get());
@@ -518,19 +519,28 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		WaitforElementtobeclickable(xml.getlocator("//locators/ContractSearch"));
 		Clickon(getwebelement(xml.getlocator("//locators/ContractSearch")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Contract Search");
-
-		WaitforElementtobeclickable(xml.getlocator("//locators/InputContractId")); // new added by ayush
+		waitForpageload();
+		waitforPagetobeenable();
+	    List<WebElement> tableRow = GetWebElements("//div[contains(@style,'block') and contains(@class,'ui-draggable ui-resizable')]//table[@class='ui-jqgrid-btable']//tr");
+		Assert.assertTrue(tableRow.size()>0, "Contract Rows not found");
+		WebElement ele1 = tableRow.get(0);
+		Clickon(ele1);
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step:  Select Contract");
+		waitForpageload();
+		waitforPagetobeenable();
+		String Ok = "//div[contains(@style,'block') and contains(@class,'ui-draggable ui-resizable')]//button[contains(@title,'OK')]";
+		Clickon(getwebelement(Ok));
+		
+		/*WaitforElementtobeclickable(xml.getlocator("//locators/InputContractId")); // new added by ayush
 		SendKeys(getwebelement(xml.getlocator("//locators/InputContractId")), InputData[12].toString());
 		WaitforElementtobeclickable((xml.getlocator("//locators/ContractIdSearch"))); // add by ayush for abandoned
-		Clickon(getwebelement(xml.getlocator("//locators/ContractIdSearch")));
+		Clickon(getwebelement(xml.getlocator("//locators/ContractIdSearch")));*/
 		waitforPagetobeenable();
-
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step:  Select Contract");
-
 		// Clickon(getwebelement(xml.getlocator("//locators/SubmitContract")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Submit Contract");
 		Thread.sleep(5000);
-		if (InputData[9].toString().equals("Ethernet Hub")) {
+		if (InputData[9].toString().equals("Ethernet Hub")) 
+		{
 			Clickon(getwebelement(xml.getlocator("//locators/NetworkReferenceSearch")));
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Network Reference Search");
 			Clickon(getwebelement(xml.getlocator("//locators/AddNetworkReferenceSearch")));
@@ -544,14 +554,21 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Submit Network Reference");
 			waitforPagetobeenable();
 			Thread.sleep(3000);
-		} else if (InputData[9].toString().equals("Dark Fibre") || InputData[9].toString().equals("public Wave Node")
-				|| InputData[9].toString().equals("Ethernet VPN Access")) {
+		}
+		else if (InputData[9].toString().equals("Dark Fibre") || InputData[9].toString().equals("public Wave Node")|| InputData[9].toString().equals("Ethernet VPN Access")) 
+		{
 			addNetwork(InputData[33].toString());
-		} else if (InputData[9].toString().equals("HNS") || InputData[9].toString().equals("Ethernet Spoke")) {
-			if (HubNetworkReference.get() != null) {
+		} 
+		
+		else if (InputData[9].toString().equals("HNS") || InputData[9].toString().equals("Ethernet Spoke")) 
+		{
+			if (HubNetworkReference.get() != null) 
+			{
 				SendKeys(getwebelement(xml.getlocator("//locators/InputNetworkReference")), HubNetworkReference.get());
 				ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Network reference from New Hub");
-			} else {
+			} 
+			else 
+			{
 				addNetwork(InputData[33].toString());
 			}
 
@@ -559,10 +576,11 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		String[] nonNetworkProducts = new String[] { "Cloud Unified Communications", "IP Voice Solutions",
 				"Professional Services", "Wave", "Ethernet Line", "Ethernet Spoke", "Ethernet Hub", "public Ethernet",
 				"public Wave Service", "DCA Ethernet", "Ultra Low Latency", "Ethernet Spoke", "Ethernet Access",
-				"public Wave Node", "IP VPN Service", "Ethernet VPN Access" };
+				"public Wave Node","IP VPN Service", "Ethernet VPN Access" };
 		int index = Arrays.asList(nonNetworkProducts).indexOf(InputData[9].toString());
 		System.out.println("click service order search field" + String.valueOf(index));
-		if (index < 0) {
+		if (index < 0) 
+		{
 			addNetwork();
 		}
 		Thread.sleep(6000);
@@ -4591,7 +4609,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 				AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
 				ClickHereSave();
 			}
-			else if (InputData[10].equals("IP VPN Wholesale")) {
+			else if (InputData[10].equals("IP VPN Wholesale")||InputData[10].equals("PrizmNet")) {
 				WaitforElementtobeclickable(xml.getlocator("//locators/IPVPNSite/ClickLink").replace("Value", "Sites"));
 				Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/ClickLink").replace("Value", "Sites")));
 				waitforPagetobeenable();
@@ -5097,7 +5115,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	 */
 	public void Check(Object[] InputData) throws Exception {
 		Thread.sleep(10000);
-		ServiceOrder.set("877429739/200817-0036");
+		ServiceOrder.set("212217785/200818-0118");
 		do {
 			Pagerefresh();
 			System.out.println("Page to be refresed");
@@ -10302,6 +10320,45 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	public void IPVPNPrizmNetMiddleApp(Object[] InputData) throws Exception {
 		MiddleAppDropdown("Site Type", InputData[50].toString());
 		MiddleAppDropdown("Router Type", InputData[51].toString());
+		MiddleAppDropdown("Layer 3 Resilience", "No Resilience");
+		//MiddleAppDropdown("SD WAN Subtype", "NA");
+		MiddleAppDropdown("Router Technology", "N/A");
+		MiddleAppDropdown("Service Bandwidth (Primary)", InputData[52].toString());
+		MiddleAppTextBox("Capacity Check Reference", InputData[53].toString());
+		MiddleAppDropdown("Hard Modify Flag", InputData[54].toString());
+		MiddleAppDropdown("OSS Platform Flag (Primary)", InputData[55].toString());
+		ClickHereSave();
+		waitforPagetobeenable();
+		Thread.sleep(4000);
+		addSiteADetails(InputData);
+		if (InputData[32].toString().equalsIgnoreCase("offnet")) {
+			// AEndDropdownSelection("Access Type",InputData[56].toString());
+		} 
+		else
+		{
+			AEndDropdownSelection("Access Type", InputData[56].toString());
+			AEndDropdownSelection("Access Technology", InputData[57].toString());
+			AEndDropdownSelection("Building Type", InputData[58].toString());
+			AEndDropdownSelection("Customer Site Pop Status", InputData[59].toString());
+			AEndInputEnter("3rd Party Connection Reference", Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("BCP Reference", Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("Site Name Alias", Integer.toString(rnd.nextInt(1000)));
+
+			// Install Time
+			AEndDropdownSelection("Install Time", InputData[64].toString());
+
+			// CPE Information
+			int rnd_int = rnd.nextInt(1000);
+			AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
+			AEndDropdownSelection("Cabinet Type", InputData[60].toString());
+			AEndInputEnter("Shelf ID", Integer.toString(rnd.nextInt(1000)));
+
+			AEndInputEnter("Slot ID", Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("Physical Port ID", Integer.toString(rnd.nextInt(1000)));
+			AEndDropdownSelection("Presentation Interface", InputData[61].toString());
+			AEndDropdownSelection("Connector Type", InputData[62].toString());
+			AEndDropdownSelection("Fibre Type", InputData[63].toString());
+		}
 		ClickHereSave();
 		waitforPagetobeenable();
 	}
@@ -10566,12 +10623,10 @@ public class NewOrderOnnetHelper extends DriverHelper {
 
 		System.out.println(xml.getlocator("//locators/IPVPNSite/NetworkReference"));
 		Thread.sleep(5000);
-
-		String NetworkReference = null;
-		String NetworkReference2 = null;
+		String NetworkReference = "";
+		String NetworkReference2 = "";
 		try {
-			NetworkReference = getwebelement2(xml.getlocator("//locators/IPVPNSite/NetworkReference"))
-					.getAttribute("value");
+			NetworkReference = getwebelement2(xml.getlocator("//locators/IPVPNSite/NetworkReference")).getAttribute("value");
 			System.out.println("try block using value" + NetworkReference);
 		} catch (Exception e) {
 			System.out.println("Catch block using value" + NetworkReference);
@@ -10644,10 +10699,10 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	// --- Added By Abhay- 28Sep-2019
 	public void NetworkReferenceFillService(Object[] InputData)
 			throws InterruptedException, DocumentException, IOException {
-		if (InputData[11].toString().equalsIgnoreCase("SWIFTNet")
-				|| InputData[11].toString().equalsIgnoreCase("PrizmNet")) {
+		if (InputData[10].toString().equalsIgnoreCase("SWIFTNet")
+				|| InputData[10].toString().equalsIgnoreCase("PrizmNet")) {
 
-			WaitforElementtobeclickable(xml.getlocator("//locators/NetworkReferenceSearch"));
+			/*WaitforElementtobeclickable(xml.getlocator("//locators/NetworkReferenceSearch"));
 			Clickon(getwebelement(xml.getlocator("//locators/NetworkReferenceSearch")));
 			waitforPagetobeenable();
 			Clickon(getwebelement(xml.getlocator("//locators/NetworkPlusSign")));
@@ -10660,7 +10715,8 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Submit Network Reference");
 			savePage();
 			waitforPagetobeenable();
-			Thread.sleep(5000);
+			Thread.sleep(5000);*/
+			addNetwork();
 
 		}
 
