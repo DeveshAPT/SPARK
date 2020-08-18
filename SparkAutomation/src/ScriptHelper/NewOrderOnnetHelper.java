@@ -4604,7 +4604,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			EnterDateInFooter(InputData);
 			EnterBillingDateInFooter(InputData);
 			EnterServiceChargeInFooter(InputData, "2");
-			if (InputData[10].equals("IP VPN Access")||InputData[10].equals("IP VPN Plus")) {
+			if (InputData[10].equals("IP VPN Access")||InputData[10].equals("IP VPN Plus")||InputData[10].equals("SWIFTNet")) {
 				OperationalAttributesforIPVPN(InputData);
 				AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
 				ClickHereSave();
@@ -5115,7 +5115,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	 */
 	public void Check(Object[] InputData) throws Exception {
 		Thread.sleep(10000);
-		ServiceOrder.set("212217785/200818-0118");
+		ServiceOrder.set("877433256/200818-0096");
 		do {
 			Pagerefresh();
 			System.out.println("Page to be refresed");
@@ -10309,9 +10309,50 @@ public class NewOrderOnnetHelper extends DriverHelper {
 
 	public void IPVPNSwiftNetMiddleApp(Object[] InputData) throws Exception {
 
-		MiddleAppDropdown("Router Type", InputData[51].toString());
-		MiddleAppDropdown("Layer 3 Resilience", "No Resilience");
+		MiddleAppDropdown("Site Type", InputData[50].toString());
+		MiddleAppDropdown("Router Type",InputData[51].toString());
+		MiddleAppDropdown("Layer 3 Resilience", "SILVER");
 
+		ClickHereSave();
+		waitforPagetobeenable();
+		
+		MiddleAppDropdown("Router Technology", "Managed Physical Router");
+		MiddleAppDropdown("Service Bandwidth (Primary)", InputData[52].toString());
+		MiddleAppTextBox("Capacity Check Reference", InputData[53].toString());
+		MiddleAppDropdown("Hard Modify Flag", InputData[54].toString());
+		MiddleAppDropdown("OSS Platform Flag (Primary)", InputData[55].toString());
+		ClickHereSave();
+		waitforPagetobeenable();
+		Thread.sleep(4000);
+		addSiteADetails(InputData);
+		if (InputData[32].toString().equalsIgnoreCase("offnet")) {
+			// AEndDropdownSelection("Access Type",InputData[56].toString());
+		} 
+		else
+		{
+			AEndDropdownSelection("Access Type", InputData[56].toString());
+			AEndDropdownSelection("Access Technology", InputData[57].toString());
+			AEndDropdownSelection("Building Type", InputData[58].toString());
+			AEndDropdownSelection("Customer Site Pop Status", InputData[59].toString());
+			AEndInputEnter("3rd Party Connection Reference", Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("BCP Reference", Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("Site Name Alias", Integer.toString(rnd.nextInt(1000)));
+
+			// Install Time
+			AEndDropdownSelection("Install Time", InputData[64].toString());
+
+			// CPE Information
+			int rnd_int = rnd.nextInt(1000);
+			AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
+			AEndDropdownSelection("Cabinet Type", InputData[60].toString());
+			AEndInputEnter("Shelf ID", Integer.toString(rnd.nextInt(1000)));
+
+			AEndInputEnter("Slot ID", Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("Physical Port ID", Integer.toString(rnd.nextInt(1000)));
+			AEndDropdownSelection("Presentation Interface", InputData[61].toString());
+			AEndDropdownSelection("Connector Type", InputData[62].toString());
+			AEndDropdownSelection("Fibre Type", InputData[63].toString());
+		}
 		ClickHereSave();
 		waitforPagetobeenable();
 
@@ -10435,7 +10476,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/SubmitSubVPNList")));
 		Thread.sleep(3000);
 		waitforPagetobeenable();
-		if ( InputData[10].equals("PrizmNet")|| InputData[10].equals("IP VPN Access")|| InputData[10].equals("IP VPN Plus")) 
+		if ( InputData[10].equals("PrizmNet")||InputData[10].equals("SWIFTNet")|| InputData[10].equals("IP VPN Access")|| InputData[10].equals("IP VPN Plus")) 
 		{
 			Thread.sleep(5000);
 			Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/SearchInput").replace("Value", "Physical Port ID Primary")));
@@ -10448,12 +10489,14 @@ public class NewOrderOnnetHelper extends DriverHelper {
 
 			Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/ClickLink").replace("Value", "IP Details")));
 			waitforPagetobeenable();
-			SendKeys(getwebelement(
-					xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "LAN Interface IPv4 Address")),
-					"123.65.19.1");
-			SendKeys(getwebelement(
-					xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "LAN Interface IPv4 Prefix")),
-					"123.65.19.1");
+			SendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "LAN Interface IPv4 Address")),"123.65.19.1");
+			SendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "LAN Interface IPv4 Prefix")),"123.65.19.1");
+			if(InputData[10].equals("SWIFTNet"))
+			{
+				ClearSendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "LAN VRRP IPv4 Address 1")),"123.65.19.1");
+				ClearSendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "Second CPE LAN Interface IPv4 Address")),"123.65.19.1");
+				ClearSendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/TextInput").replace("Value", "LAN VRRP IPv4 Address 2")),"123.65.19.1");
+			}
 
 		}
 		Thread.sleep(3000);
