@@ -5669,10 +5669,23 @@ public class NewOrderOnnetHelper extends DriverHelper
 	public void EnterInstallationChargeInFooter(Object Inputdata[]) throws Exception {
 		waitForpageload();
 		waitforPagetobeenable();
-		if (!Inputdata[8].toString().equals("Cloud Unified Communications") 
+		try
+		{
+			OpenTab("Installation and Test");
+			ExtentTestManager.getTest().log(LogStatus.PASS," Step: Click on Installation Dropdown button and Select Installation and Test");
+			ClearSendKeys(getwebelement(xml.getlocator("//locators/PrimaryTestingMethod")), "Not Required");
+			SendkeaboardKeys(getwebelement(xml.getlocator("//locators/PrimaryTestingMethod")), Keys.TAB);
+			savePage();
+			waitforPagetobeenable();
+		}
+		catch (Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		/*if (!Inputdata[9].toString().equals("Cloud Unified Communications") 
 				
-				&& !Inputdata[8].toString().equals("Professional Services")
-				&& !Inputdata[8].toString().equals("Ethernet Hub")){
+				&& !Inputdata[9].toString().equals("Professional Services")
+				&& !Inputdata[9].toString().equals("Ethernet Hub")){
 			Select(getwebelement(xml.getlocator("//locators/InstalltionDropdown")), "Installation and Test");
 			ExtentTestManager.getTest().log(LogStatus.PASS,
 					" Step: Click on Installation Dropdown button and Select Installation and Test");
@@ -5684,13 +5697,13 @@ public class NewOrderOnnetHelper extends DriverHelper
 			savePage();
 			waitforPagetobeenable();
 			Thread.sleep(3000);
-			if (!Inputdata[8].toString().equalsIgnoreCase("Wave")
-					&& !Inputdata[8].toString().equalsIgnoreCase("Interconnect")
-					&& !Inputdata[8].toString().equalsIgnoreCase("Ethernet Spoke")
-					&& !Inputdata[8].toString().equalsIgnoreCase("SWIFTNet")
-					&& !Inputdata[8].toString().equalsIgnoreCase("SIP Trunking")
-					&& !Inputdata[11].toString().equalsIgnoreCase("IP VPN Wholesale")
-					&& !Inputdata[8].toString().equalsIgnoreCase("Ethernet Line")) {
+			if (!Inputdata[9].toString().equalsIgnoreCase("Wave")
+					&& !Inputdata[9].toString().equalsIgnoreCase("Interconnect")
+					&& !Inputdata[9].toString().equalsIgnoreCase("Ethernet Spoke")
+					&& !Inputdata[9].toString().equalsIgnoreCase("SWIFTNet")
+					&& !Inputdata[9].toString().equalsIgnoreCase("SIP Trunking")
+					&& !Inputdata[10].toString().equalsIgnoreCase("IP VPN Wholesale")
+					&& !Inputdata[9].toString().equalsIgnoreCase("Ethernet Line")) {
 				Clickon(getwebelement(xml.getlocator("//locators/SaveOrderContinue")));
 				waitforPagetobeenable();
 				Thread.sleep(3000);
@@ -5700,7 +5713,7 @@ public class NewOrderOnnetHelper extends DriverHelper
 		alertPopUp();
 		savePage();
 		waitforPagetobeenable();
-		waitForpageload();
+		waitForpageload();*/
 	}
 
 	
@@ -5986,7 +5999,7 @@ public class NewOrderOnnetHelper extends DriverHelper
 		savePage();
 		waitforPagetobeenable();
 		Thread.sleep(10000);
-	/*	if (Inputdata[8].toString().equals("IP VPN Service"))// **Start** Added By Abhay dated 28-Sep-2019
+		if (Inputdata[8].toString().equals("IP VPN Service"))// **Start** Added By Abhay dated 28-Sep-2019
 		{
 			savePage();
 			waitforPagetobeenable();
@@ -6022,10 +6035,9 @@ public class NewOrderOnnetHelper extends DriverHelper
 
 			EnterDateInFooter(Inputdata);
 			EnterBillingDateInFooter(Inputdata);
-			if (!Inputdata[11].equals("IP VPN Wholesale")) {
-				ServiceChargeforIPVPNSite(Inputdata, "2");
-			}
-			if (!Inputdata[11].equals("IP VPN Wholesale")) {
+			ServiceChargeforIPVPNSite(Inputdata, "2");
+			if (!Inputdata[11].equals("IP VPN Wholesale")) 
+			{
 				OperationalAttributesforIPVPN(Inputdata);
 			}
 			EnterInstallationChargeInFooter(Inputdata);
@@ -6085,7 +6097,6 @@ public class NewOrderOnnetHelper extends DriverHelper
 			// Create and completed new IP VPN SItes
 			// Open the Older Order number;
 		} // **End**
-*/
 		Thread.sleep(5000);
 		savePage();
 		waitforPagetobeenable();
