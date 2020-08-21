@@ -45,7 +45,7 @@ public class NewOrders extends DriverTestcase {
 		newOrderOnnnet.get().CompletedValidation(Data);
 		newOrderOnnnet.get().WriteServiceOrderNumber(Data);
 	}
-
+	
 	@Test(dataProviderClass = DataReader.class, dataProvider = "Cease")
 	public void Cease(Object[] Data) throws Exception {
 		Login.get().Login("Sieble");
@@ -215,7 +215,7 @@ public class NewOrders extends DriverTestcase {
 		newOrderOnnnet.get().createCustomerOrder(Data);
 		newOrderOnnnet.get().productSelectionHelper(Data);
 		newOrderOnnnet.get().openServiceOrderNumber();
-		if (Data[8].toString().equalsIgnoreCase("IP VPN Service")) {
+		if (Data[9].toString().equalsIgnoreCase("IP VPN Service")) {
 			newOrderOnnnet.get().enterMandatoryFieldsInHeader(Data);
 			newOrderOnnnet.get().enterMandatoryDetailsInMiddleApplet(Data);
 			newOrderOnnnet.get().EnterDateInFooter(Data);
@@ -473,12 +473,11 @@ public class NewOrders extends DriverTestcase {
 	@Test(dataProviderClass = DataReader.class, dataProvider = "NewOrderOffnet")
 	public void EndtoEndOrderOffnet(Object[] Data) throws Exception {
 		Login.get().Login("Sieble");
-		// newOrderOnnnet.get().Check(Data);
+		//newOrderOnnnet.get().Check(Data);
 		newOrderOnnnet.get().accountTabDetails(Data);
 		newOrderOnnnet.get().createCustomerOrder(Data);
 		newOrderOnnnet.get().productSelectionHelper(Data);
 		newOrderOnnnet.get().openServiceOrderNumber();
-
 		newOrderOnnnet.get().enterMandatoryFieldsInHeader(Data);
 		newOrderOnnnet.get().enterMandatoryDetailsInMiddleApplet(Data);
 		newOrderOnnnet.get().VoiceConfigTab(Data);
@@ -487,7 +486,6 @@ public class NewOrders extends DriverTestcase {
 		newOrderOnnnet.get().EnterDateInFooter(Data);
 		newOrderOnnnet.get().EnterBillingDateInFooter(Data);
 		newOrderOnnnet.get().EnterServiceChargeInFooter(Data, "2");
-
 		newOrderOnnnet.get().SelectAttachmentTab(Data);
 		newOrderOnnnet.get().UploadDocument(Data);
 		newOrderOnnnet.get().SelectServiceGroupTab(Data);
@@ -499,20 +497,23 @@ public class NewOrders extends DriverTestcase {
 		newOrderOnnnet.get().clickOnManualValidationB(Data);
 		newOrderOnnnet.get().DeliveryValidation(Data);
 		newOrderOnnnet.get().clickOnManualValidationA();
-		if (!Data[8].toString().equalsIgnoreCase("IP VPN Service")) {
-			if (Data[74].toString().equals("Offnet")) {
-				newOrderOnnnet.get().CEOS_Offnet();
-				newOrderOnnnet.get().LaunchingCEOSApplication(Data);
+		if (!Data[9].toString().equalsIgnoreCase("IP VPN Service")) 
+		{
+			if (Data[32].toString().equalsIgnoreCase("Offnet")) 
+			{
+				//newOrderOnnnet.get().CEOS_Offnet();
+				//newOrderOnnnet.get().LaunchingCEOSApplication(Data);
 				newOrderOnnnet.get().getReferenceNo(Data);// added new
 				newOrderOnnnet.get().CompletedValidation(Data);
 			}
-		} else {
-			newOrderOnnnet.get().CompletedValidation_offnet(Data);
+		} 
+		else 
+		{
+			newOrderOnnnet.get().CompletedValidation(Data);
 		}
 		newOrderOnnnet.get().getReferenceNo(Data);// added new
 		newOrderOnnnet.get().CompletedValidation(Data);
 		newOrderOnnnet.get().validateSlaMatrix(Data);
-
 	}
 
 	// As Add By Ayush

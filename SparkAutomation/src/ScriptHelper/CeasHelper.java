@@ -56,7 +56,7 @@ public class CeasHelper extends DriverHelper {
 		Thread.sleep(4000);
 	//	ServiceOrder.set(InputData[187].toString());
 		Clickon(getwebelement(xml.getlocator("//locators/ServiceOrderSearchForAll"))); // as per Ayush
-		System.out.println("click service order search field"+ InputData[0].toString());
+		//System.out.println("click service order search field"+ InputData[0].toString());
 		if (InputData[9].toString().equalsIgnoreCase("IP VPN Service")) 
 		{
 				ExtentTestManager.getTest().log(LogStatus.PASS," Step: Working On newly Created service order  :" + ServiceOrder2.get().toString());
@@ -103,8 +103,8 @@ public class CeasHelper extends DriverHelper {
 			}
 		}
 		String TempOrder = InputData[9].toString().equalsIgnoreCase("IP VPN Service") ? ServiceOrder2.get().toString(): ServiceOrder.get().toString();
-		Assert.assertTrue(BillingStatus.equalsIgnoreCase("COMPLETE") || BillingStatus.equalsIgnoreCase("BILLING ERROR")|| BillingStatus.equalsIgnoreCase("SENT TO BILLING"),"Not Able to Proceed The Cease for Order Number : " + TempOrder + "as Billing Status is : "
-						+ BillingStatus);
+		//Assert.assertTrue(BillingStatus.equalsIgnoreCase("COMPLETE") || BillingStatus.equalsIgnoreCase("BILLING ERROR")|| BillingStatus.equalsIgnoreCase("SENT TO BILLING"),"Not Able to Proceed The Cease for Order Number : " + TempOrder + "as Billing Status is : "			+ BillingStatus);
+		Assert.assertTrue(BillingStatus.equalsIgnoreCase("COMPLETE") ,"Not Able to Proceed The Cease for Order Number : " + TempOrder + "as Billing Status is : "+ BillingStatus);
 		if (!billing || BillingStatus.equalsIgnoreCase("SENT TO BILLING")) 
 		{
 			// Internal cease functionality
@@ -270,7 +270,65 @@ public class CeasHelper extends DriverHelper {
 		
 		CeaseAction();
 	}
+	public void CalenderdateSelection(String InDate) throws InterruptedException, IOException {
+		String yearLocate = "//div[@id='ui-datepicker-div']//select[@class='ui-datepicker-year']";
+		String mntLocate = "//div[@id='ui-datepicker-div']//select[@class='ui-datepicker-month']";
+		String dtLocate = "//div[@id='ui-datepicker-div']//a[text()='-1']";
 
+		String[] parts = InDate.split("/");
+		String cl_date = parts[0];
+		String cl_month = parts[1].toLowerCase();
+		String cl_year = parts[2];
+		if (cl_month.equalsIgnoreCase("01"))
+			cl_month = "0";
+		else if (cl_month.equalsIgnoreCase("02"))
+			cl_month = "1";
+		else if (cl_month.equalsIgnoreCase("03"))
+			cl_month = "2";
+		else if (cl_month.equalsIgnoreCase("04"))
+			cl_month = "3";
+		else if (cl_month.equalsIgnoreCase("05"))
+			cl_month = "4";
+		else if (cl_month.equalsIgnoreCase("06"))
+			cl_month = "5";
+		else if (cl_month.equalsIgnoreCase("07"))
+			cl_month = "6";
+		else if (cl_month.equalsIgnoreCase("08"))
+			cl_month = "7";
+		else if (cl_month.equalsIgnoreCase("09"))
+			cl_month = "8";
+		else if (cl_month.equalsIgnoreCase("10"))
+			cl_month = "9";
+		else if (cl_month.equalsIgnoreCase("11"))
+			cl_month = "10";
+		else if (cl_month.equalsIgnoreCase("12"))
+			cl_month = "11";
+
+		Select(getwebelement(yearLocate), cl_year);
+		Clickon(getwebelement(mntLocate));
+		Select2(getwebelement(mntLocate), cl_month);
+		if (cl_date.equalsIgnoreCase("01"))
+			dtLocate = dtLocate.replace("-1", "1");
+		else if (cl_date.equalsIgnoreCase("02"))
+			dtLocate = dtLocate.replace("-1", "2");
+		else if (cl_date.equalsIgnoreCase("03"))
+			dtLocate = dtLocate.replace("-1", "3");
+		else if (cl_date.equalsIgnoreCase("04"))
+			dtLocate = dtLocate.replace("-1", "4");
+		else if (cl_date.equalsIgnoreCase("05"))
+			dtLocate = dtLocate.replace("-1", "5");
+		else if (cl_date.equalsIgnoreCase("06"))
+			dtLocate = dtLocate.replace("-1", "6");
+		else if (cl_date.equalsIgnoreCase("07"))
+			dtLocate = dtLocate.replace("-1", "7");
+		else if (cl_date.equalsIgnoreCase("08"))
+			dtLocate = dtLocate.replace("-1", "8");
+		else if (cl_date.equalsIgnoreCase("09"))
+			dtLocate = dtLocate.replace("-1", "9");
+		else
+			dtLocate = dtLocate.replace("-1", cl_date);
+		Clickon(getwebelement(dtLocate));
+	}
 	public void CeaseAction(Object[] InputData) throws Exception
 	{
 		waitforPagetobeenable();
@@ -322,34 +380,50 @@ public class CeasHelper extends DriverHelper {
 		waitForpageload();
 		waitforPagetobeenable();
 		String _curdate= CurrentDate();
-		SendKeys(getwebelement(xml.getlocator("//locators/OrderSignedDate")),_curdate );
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Signed Date");
+	
+		String temp1 = xml.getlocator("//locators/OrderDateField/CalendrButton");
+		String temp = temp1.replace("Value", "Order Signed Date");
+		WaitforElementtobeclickable(temp);
+		Clickon(getwebelement(temp));
+		CalenderdateSelection(_curdate);
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Signed Date " + _curdate);
 
-		SendKeys(getwebelement(xml.getlocator("//locators/OrderReceivedDate")), _curdate);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date");
+		
+		
+		temp = temp1.replace("Value", "Order Received Date");
+		WaitforElementtobeclickable(temp);
+		Clickon(getwebelement(temp));
+		CalenderdateSelection(_curdate);
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date " + _curdate);
 
-		SendKeys(getwebelement(xml.getlocator("//locators/CustomerRequestedDate")), _curdate);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date");
+	
+		temp = temp1.replace("Value", "Customer Requested Date");
+		//WaitforElementtobeclickable(temp);
+		List<WebElement> RequestListDate = GetWebElements(temp);
+		WebElement ele1 = RequestListDate.get(1);
+		Clickon(ele1);
+		CalenderdateSelection(CurrentDate());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Customer Requested Date " + CurrentDate());
 
+		
 		WaitforElementtobeclickable(xml.getlocator("//locators/Billing"));
 		Clickon(getwebelement(xml.getlocator("//locators/Billing")));
 		System.out.println("BILLING TAB");
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Billing");
+		
 		Thread.sleep(10000);
 		waitForpageload();
 		waitforPagetobeenable();
 		System.out.println("Current Date : " + CurrentDate());
-		String fDate = FutureDate(15);
+		String fDate = FutureDate(1);
 		System.out.println("Future Date : " + fDate);
-		SendKeys(getwebelement(xml.getlocator("//locators/BillingEndDate")), fDate);
-		Thread.sleep(10000);
-		// SendkeaboardKeys(getwebelement(xml.getlocator("//locators/BillingEndDate")),
-		// Keys.TAB);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Billing End Date : " + fDate);
-		// ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Contract
-		// Term");
-		SendkeaboardKeys(getwebelement(xml.getlocator("//locators/BillingEndDate")), Keys.TAB);
-		Clickon(getwebelement(xml.getlocator("//locators/POStartDateAccess")));
+		
+		temp = temp1.replace("Value", "Billing End Date");
+		WaitforElementtobeclickable(temp);
+		Clickon(getwebelement(temp));
+		CalenderdateSelection(fDate);
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Customer Requested Date " + fDate);
+		
 		try 
 		{
 			if (isElementPresent(xml.getlocator("//locators/SaveOrderChanges"))) 
