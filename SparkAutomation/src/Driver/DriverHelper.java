@@ -1060,6 +1060,11 @@ public class DriverHelper
 		Random rndm = new Random();
 		return (rndm.nextInt(limit));
 	}
+	public String GetRandomNumberString(int limit)
+	{
+		Random rndm = new Random();
+		return Integer.toString((rndm.nextInt(limit)));
+	}
 	
 	public String GetRandomString(int length)
 	{
