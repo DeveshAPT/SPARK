@@ -575,9 +575,9 @@ public class NewOrderOnnetHelper extends DriverHelper {
 
 		}
 		String[] nonNetworkProducts = new String[] { "Cloud Unified Communications", "IP Voice Solutions",
-				"Professional Services", "Wave", "Ethernet Line", "Ethernet Spoke", "Ethernet Hub", "public Ethernet",
-				"public Wave Service", "DCA Ethernet", "Ultra Low Latency", "Ethernet Spoke", "Ethernet Access",
-				"public Wave Node","IP VPN Service", "Ethernet VPN Access","CPE Solutions Site" };
+				"Professional Services", "Wave", "Ethernet Line", "Ethernet Spoke", "Ethernet Hub", "Private Ethernet",
+				"Private Wave Service", "DCA Ethernet", "Ultra Low Latency", "Ethernet Spoke", "Ethernet Access",
+				"Private Wave Node","IP VPN Service", "Ethernet VPN Access","CPE Solutions Site" };
 		int index = Arrays.asList(nonNetworkProducts).indexOf(InputData[9].toString());
 		System.out.println("click service order search field" + String.valueOf(index));
 		if (index < 0) 
@@ -2391,62 +2391,56 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		waitforPagetobeenable();
 	}
 
-	public void publicEthernetSiteEntries(Object[] InputData) throws Exception {
-		Random rnd = new Random();
-		int rnd_int = 0;
-		if (InputData[32].toString().equalsIgnoreCase("offnet")) {
-			//
-		} else {
-			AEndDropdownSelection("Access Type", InputData[52].toString());
-			// AEndDropdownSelection("Access Technology",InputData[53].toString());
-			AEndDropdownSelection("Building Type", InputData[53].toString());
+	public void PrivateEthernetSiteEntries(Object[] InputData) throws Exception {
+		
+		AEndDropdownSelection("Access Type", InputData[52].toString());
+		AEndDropdownSelection("Access Technology",InputData[68].toString());
+		AEndDropdownSelection("Building Type", InputData[53].toString());
+		BEndDropdownSelection("Access Type", InputData[55].toString());
+		BEndDropdownSelection("Access Technology",InputData[69].toString());
+		BEndDropdownSelection("Building Type", InputData[56].toString());
+		if (InputData[32].toString().equalsIgnoreCase("offnet")) 
+		{
+			ClickHereSave();
+			AEndDropdownSelection("Third Party Access Provider", InputData[70].toString());
+			BEndDropdownSelection("Third Party Access Provider", InputData[71].toString());
+			AEndDropdownSelection("DSL SLA Class",InputData[72].toString());
+			BEndDropdownSelection("DSL SLA Class",InputData[73].toString());
+			AEndDropdownSelection("Third Party SLA Tier", InputData[74].toString());
+			BEndDropdownSelection("Third Party SLA Tier", InputData[75].toString());
+			AEndInputEnter("3rd Party Connection Reference", "AYH"+GetRandomNumberString(1000));
+			BEndInputEnter("3rd Party Connection Reference", "BHK"+GetRandomNumberString(1000));
+		} 
+			
 			AEndDropdownSelection("Customer Site Pop Status", InputData[54].toString());
-			rnd_int = rnd.nextInt(1000);
-			// AEndInputEnter("Site Name Alias",InputData[60].toString());
-			AEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
-
-			BEndDropdownSelection("Access Type", InputData[55].toString());
-			// BEndDropdownSelection("Access Technology",InputData[57].toString());
-			BEndDropdownSelection("Building Type", InputData[56].toString());
+			AEndInputEnter("Site Name Alias", GetRandomNumberString(1000));
 			BEndDropdownSelection("Customer Site Pop Status", InputData[57].toString());
-			rnd_int = rnd.nextInt(1000);
-			// AEndInputEnter("Site Name Alias",InputData[60].toString());
-			BEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
+			BEndInputEnter("Site Name Alias", GetRandomNumberString(1000));
 
 			// Install Time
 			AEndDropdownSelection("Install Time", InputData[58].toString());
 			BEndDropdownSelection("Install Time", InputData[59].toString());
 
 			// Termination Information
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Cabinet ID", GetRandomNumberString(1000));
 			AEndDropdownSelection("Cabinet Type", InputData[60].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Shelf ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-
-			BEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Shelf ID", GetRandomNumberString(1000));
+			BEndInputEnter("Cabinet ID", GetRandomNumberString(1000));
 			BEndDropdownSelection("Cabinet Type", InputData[61].toString());
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Shelf ID", Integer.toString(rnd_int));
+			BEndInputEnter("Shelf ID", GetRandomNumberString(1000));
 
 			// Access Port
 			AEndDropdownSelection("Presentation Interface", InputData[62].toString());
 			AEndDropdownSelection("Connector Type", InputData[63].toString());
 			AEndDropdownSelection("Fibre Type", InputData[64].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Physical Port ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Slot ID", Integer.toString(rnd_int));
-
+			AEndInputEnter("Physical Port ID", GetRandomNumberString(1000));
+			AEndInputEnter("Slot ID", GetRandomNumberString(1000));
 			BEndDropdownSelection("Presentation Interface", InputData[65].toString());
 			BEndDropdownSelection("Connector Type", InputData[66].toString());
 			BEndDropdownSelection("Fibre Type", InputData[67].toString());
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Physical Port ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Slot ID", Integer.toString(rnd_int));
-		}
+			BEndInputEnter("Physical Port ID", GetRandomNumberString(1000));
+			BEndInputEnter("Slot ID", GetRandomNumberString(1000));
+	
 		waitForpageload();
 		waitforPagetobeenable();
 		ClickHereSave();
@@ -2455,148 +2449,115 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	}
 
 	public void DCAEthernetSiteEntries(Object[] InputData) throws Exception {
-		Random rnd = new Random();
-		int rnd_int = 0;
-		if (InputData[32].toString().equalsIgnoreCase("offnet")) {
-			//
-		} else {
-			AEndDropdownSelection("Access Type", InputData[54].toString());
-			AEndDropdownSelection("Access Technology", InputData[55].toString());
-			AEndDropdownSelection("Building Type", InputData[56].toString());
+		
+		AEndDropdownSelection("Access Type", InputData[54].toString());
+		AEndDropdownSelection("Access Technology", InputData[55].toString());
+		AEndDropdownSelection("Building Type", InputData[56].toString());
+		BEndDropdownSelection("Access Technology", InputData[59].toString());
+		BEndDropdownSelection("Building Type", InputData[60].toString());
+		if (InputData[32].toString().equalsIgnoreCase("offnet")) 
+		{
+			ClickHereSave();
+			AEndDropdownSelection("Third Party Access Provider", InputData[77].toString());
+			AEndDropdownSelection("DSL SLA Class", InputData[78].toString());
+			AEndDropdownSelection("Third Party SLA Tier", InputData[79].toString());
+			AEndInputEnter("3rd Party Connection Reference", GetRandomNumberString(1000));
+			
+		} 
 			AEndDropdownSelection("Customer Site Pop Status", InputData[57].toString());
-			rnd_int = rnd.nextInt(1000);
-			// AEndInputEnter("Site Name Alias",InputData[60].toString());
-			AEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
+			AEndInputEnter("Site Name Alias",  GetRandomNumberString(1000));
 			AEndDropdownSelection("Site Type", InputData[58].toString());
-
-			// BEndDropdownSelection("Access Type",InputData[55].toString());
-			BEndDropdownSelection("Access Technology", InputData[59].toString());
-			BEndDropdownSelection("Building Type", InputData[60].toString());
 			BEndDropdownSelection("Customer Site Pop Status", InputData[61].toString());
-			rnd_int = rnd.nextInt(1000);
-			// AEndInputEnter("Site Name Alias",InputData[60].toString());
-			BEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
-
+			BEndInputEnter("Site Name Alias",  GetRandomNumberString(1000));
 			// Install Time
 			AEndDropdownSelection("Install Time", InputData[62].toString());
 			BEndDropdownSelection("Install Time", InputData[63].toString());
-
 			// Termination Information
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Cabinet ID",  GetRandomNumberString(1000));
 			AEndDropdownSelection("Cabinet Type", InputData[64].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Shelf ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-
-			BEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Shelf ID",  GetRandomNumberString(1000));
+			BEndInputEnter("Cabinet ID",  GetRandomNumberString(1000));
 			BEndDropdownSelection("Cabinet Type", InputData[65].toString());
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Shelf ID", Integer.toString(rnd_int));
-
+			BEndInputEnter("Shelf ID",  GetRandomNumberString(1000));
 			// Access Port
 			AEndDropdownSelection("Presentation Interface", InputData[66].toString());
 			AEndDropdownSelection("Connector Type", InputData[67].toString());
 			AEndDropdownSelection("Fibre Type", InputData[68].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Physical Port ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Slot ID", Integer.toString(rnd_int));
-
+			AEndInputEnter("Physical Port ID",  GetRandomNumberString(1000));
+			AEndInputEnter("Slot ID",  GetRandomNumberString(1000));
 			BEndDropdownSelection("Presentation Interface", InputData[69].toString());
 			BEndDropdownSelection("Connector Type", InputData[70].toString());
 			BEndDropdownSelection("Fibre Type", InputData[71].toString());
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Physical Port ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Slot ID", Integer.toString(rnd_int));
-
+			BEndInputEnter("Physical Port ID", GetRandomNumberString(1000));
+			BEndInputEnter("Slot ID",  GetRandomNumberString(1000));
 			AEndInputEnter("Ethertype", "NA");
 			AEndInputEnter("VLAN Tag ID", "NA");
 			BEndInputEnter("Ethertype", "NA");
 			BEndInputEnter("VLAN Tag ID", "NA");
-
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("AWS Account Number", Integer.toString(rnd_int) + Integer.toString(rnd.nextInt(1000))
-					+ Integer.toString(rnd.nextInt(1000)));
-			BEndInputEnter("CSP NNI Reference Primary",
-					Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
-			BEndInputEnter("CSP NNI Reference Secondary",
-					Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
+			BEndInputEnter("AWS Account Number",  GetRandomNumberString(1000) + Integer.toString(rnd.nextInt(1000))+ Integer.toString(rnd.nextInt(1000)));
+			BEndInputEnter("CSP NNI Reference Primary",Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
+			BEndInputEnter("CSP NNI Reference Secondary",Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
 			BEndInputEnter("CSP PoP (Primary)", "NA");
 			BEndInputEnter("CSP Region", "NA");
 			BEndInputEnter("Connection Alias", "NA");
 			BEndInputEnter("S VLAN Tag ID", Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
 			BEndInputEnter("Service Key", Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
-
 			BEndDropdownSelection("CSP Bandwidth", InputData[72].toString());
 			BEndDropdownSelection("CSP Name", InputData[73].toString());
 			BEndDropdownSelection("CSP Port Type", InputData[74].toString());
 			BEndDropdownSelection("NAT Range Required", InputData[75].toString());
 			BEndDropdownSelection("Routing Domain", InputData[76].toString());
 
-		}
-		waitForpageload();
-		waitforPagetobeenable();
-		ClickHereSave();
 		waitForpageload();
 		waitforPagetobeenable();
 	}
 
-	public void publicWaveServiceSiteEntries(Object[] InputData) throws Exception {
-		Random rnd = new Random();
-		int rnd_int = 0;
-		if (InputData[32].toString().equalsIgnoreCase("offnet")) {
-			//
-		} else {
-			AEndDropdownSelection("Access Type", InputData[53].toString());
-			AEndDropdownSelection("Building Type", InputData[54].toString());
+	public void PrivateWaveServiceSiteEntries(Object[] InputData) throws Exception {
+		
+		AEndDropdownSelection("Access Type", InputData[53].toString());
+		AEndDropdownSelection("Building Type", InputData[54].toString());
+		BEndDropdownSelection("Access Type", InputData[56].toString());
+		BEndDropdownSelection("Building Type", InputData[57].toString());
+		if (InputData[32].toString().equalsIgnoreCase("offnet"))
+		{
+			ClickHereSave();
+			AEndDropdownSelection("Third Party Access Provider", InputData[67].toString());
+			AEndDropdownSelection("DSL SLA Class", InputData[69].toString());
+			AEndDropdownSelection("Third Party SLA Tier", InputData[71].toString());
+			AEndInputEnter("3rd Party Connection Reference", "AHY-" + Integer.toString(rnd.nextInt(1000)));
+			BEndDropdownSelection("Third Party Access Provider", InputData[68].toString());
+			BEndDropdownSelection("DSL SLA Class", InputData[70].toString());
+			BEndDropdownSelection("Third Party SLA Tier", InputData[72].toString());
+			BEndInputEnter("3rd Party Connection Reference", "HFG-" + Integer.toString(rnd.nextInt(1000)));
+			
+		}
 			AEndDropdownSelection("Customer Site Pop Status", InputData[55].toString());
-			AEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
-			AEndInputEnter("Node Site Name", "AHYG-" + Integer.toString(rnd.nextInt(1000)));
-			AEndInputEnter("Node Service ID",
-					Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
-
-			BEndDropdownSelection("Access Type", InputData[56].toString());
-			BEndDropdownSelection("Building Type", InputData[57].toString());
+			AEndInputEnter("Site Name Alias", GetRandomNumberString(1000));
+			AEndInputEnter("Node Site Name", "AHYG-" + GetRandomNumberString(1000));
+			AEndInputEnter("Node Service ID","NODE" + GetRandomNumberString(10000));
 			BEndDropdownSelection("Customer Site Pop Status", InputData[58].toString());
-			BEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
-			BEndInputEnter("Node Site Name", "AHYG-" + Integer.toString(rnd.nextInt(1000)));
-			BEndInputEnter("Node Service ID",
-					Integer.toString(rnd.nextInt(1000)) + Integer.toString(rnd.nextInt(1000)));
-
+			BEndInputEnter("Site Name Alias", GetRandomNumberString(1000));
+			BEndInputEnter("Node Site Name", "AHYG-" + GetRandomNumberString(1000));
+			BEndInputEnter("Node Service ID","NODE" + GetRandomNumberString(10000));
 			// Install Time
 			AEndDropdownSelection("Install Time", InputData[59].toString());
 			BEndDropdownSelection("Install Time", InputData[60].toString());
-
 			// Termination Information
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Cabinet ID", GetRandomNumberString(10000));
 			AEndDropdownSelection("Cabinet Type", InputData[61].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Shelf ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-
-			BEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Shelf ID", GetRandomNumberString(10000));
+			BEndInputEnter("Cabinet ID", GetRandomNumberString(1000));
 			BEndDropdownSelection("Cabinet Type", InputData[62].toString());
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Shelf ID", Integer.toString(rnd_int));
-
+			BEndInputEnter("Shelf ID", GetRandomNumberString(1000));
 			// Access Port
 			AEndDropdownSelection("Connector Type", InputData[63].toString());
 			AEndDropdownSelection("Fibre Type", InputData[64].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Physical Port ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Slot ID", Integer.toString(rnd_int));
-
+			AEndInputEnter("Physical Port ID", GetRandomNumberString(1000));
+			AEndInputEnter("Slot ID",GetRandomNumberString(1000));
 			BEndDropdownSelection("Connector Type", InputData[65].toString());
 			BEndDropdownSelection("Fibre Type", InputData[66].toString());
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Physical Port ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
-			BEndInputEnter("Slot ID", Integer.toString(rnd_int));
-		}
+			BEndInputEnter("Physical Port ID", GetRandomNumberString(1000));
+			BEndInputEnter("Slot ID", GetRandomNumberString(1000));
 		waitForpageload();
 		waitforPagetobeenable();
 		ClickHereSave();
@@ -2604,31 +2565,31 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		waitforPagetobeenable();
 	}
 
-	public void publicWaveNodeSiteEntries(Object[] InputData) throws Exception {
-		Random rnd = new Random();
-		int rnd_int = 0;
-		if (InputData[32].toString().equalsIgnoreCase("offnet")) {
-			//
-		} else {
-			AEndDropdownSelection("Access Type", InputData[49].toString());
-			AEndDropdownSelection("Access Technology", InputData[50].toString());
-			AEndDropdownSelection("Building Type", InputData[51].toString());
+	public void PrivateWaveNodeSiteEntries(Object[] InputData) throws Exception 
+	{
+		AEndDropdownSelection("Access Type", InputData[49].toString());
+		AEndDropdownSelection("Access Technology", InputData[50].toString());
+		AEndDropdownSelection("Building Type", InputData[51].toString());
+		if (InputData[32].toString().equalsIgnoreCase("offnet")) 
+		{
+			ClickHereSave();
+			AEndDropdownSelection("Third Party Access Provider", InputData[55].toString());
+			AEndDropdownSelection("DSL SLA Class", InputData[56].toString());
+			AEndDropdownSelection("Third Party SLA Tier", InputData[57].toString());
+			AEndInputEnter("3rd Party Connection Reference", "FGT"+GetRandomNumberString(1000));
+		}
 			AEndDropdownSelection("Customer Site Pop Status", InputData[52].toString());
-			AEndInputEnter("Site Name Alias", Integer.toString(rnd_int));
-			AEndInputEnter("Node Site Name", "NODE-" + Integer.toString(rnd.nextInt(1000)));
+			AEndInputEnter("Site Name Alias", GetRandomNumberString(1000));
+			AEndInputEnter("Node Site Name", "NODE-" + GetRandomNumberString(1000));
 
 			// Install Time
 			AEndDropdownSelection("Install Time", InputData[53].toString());
-
 			// Termination Information
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Cabinet ID", Integer.toString(rnd_int));
+			AEndInputEnter("Cabinet ID", GetRandomNumberString(1000));
 			AEndDropdownSelection("Cabinet Type", InputData[54].toString());
-			rnd_int = rnd.nextInt(1000);
-			AEndInputEnter("Shelf ID", Integer.toString(rnd_int));
-			rnd_int = rnd.nextInt(1000);
+			AEndInputEnter("Shelf ID", GetRandomNumberString(1000));
+		
 
-		}
 		waitForpageload();
 		waitforPagetobeenable();
 		ClickHereSave();
@@ -2804,17 +2765,17 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			ClickHereSave();
 			break;
 		}
-		case "public Wave Node": {
-			MiddleAppDropdown("OSS Platform Flag", InputData[47].toString());
+		case "Private Wave Node": {
+			/*MiddleAppDropdown("OSS Platform Flag", InputData[47].toString());
 			MiddleAppDropdown("Network Topology", InputData[48].toString());
 			ClickHereSave();
-			addSiteADetails(InputData);
-			publicWaveNodeSiteEntries(InputData);
-			OperationalAttributeDarkFibre();
+			addSiteADetails(InputData);*/
+			PrivateWaveNodeSiteEntries(InputData);
+			//OperationalAttributeDarkFibre();
 			ClickHereSave();
 			break;
 		}
-		case "public Wave Service": {
+		case "Private Wave Service": {
 			// MiddleAppDropdown("Coverage",InputData[47].toString());
 			MiddleAppDropdown("Service Bandwidth", InputData[47].toString());
 			MiddleAppDropdown("A End Resilience Option", InputData[48].toString());
@@ -2827,8 +2788,8 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Save();
 			addSiteADetails(InputData);
 			addSiteBDetails(InputData);
-			publicWaveServiceSiteEntries(InputData);
-			OperationalAttributeDarkFibre();
+			PrivateWaveServiceSiteEntries(InputData);
+		//	OperationalAttributeDarkFibre();
 			ClickHereSave();
 			break;
 		}
@@ -2848,16 +2809,19 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			DCAEthernetSiteEntries(InputData);
 			ClickHereSave();
 			waitforPagetobeenable();
+			if (InputData[32].toString().equalsIgnoreCase("offnet")) 
+			{
 			SiteASettingClick();
 			CSPInterconnectSiteAEntry();
 			savePage();
 			waitforPagetobeenable();
+			}
 			SiteBSettingClick();
 			CSPInterconnectSiteBEntry();
 			ClickHereSave();
 			break;
 		}
-		case "public Ethernet": {
+		case "Private Ethernet": {
 			MiddleAppDropdown("Service Bandwidth", InputData[47].toString());
 			MiddleAppDropdown("A End Resilience Option", InputData[48].toString());
 			MiddleAppDropdown("B End Resilience Option", InputData[49].toString());
@@ -2871,7 +2835,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			ClickHereSave();
 			addSiteADetails(InputData);
 			addSiteBDetails(InputData);
-			publicEthernetSiteEntries(InputData);
+			PrivateEthernetSiteEntries(InputData);
 			ClickHereSave();
 			break;
 		}
@@ -5027,7 +4991,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	 */
 	public void Check(Object[] InputData) throws Exception {
 		Thread.sleep(10000);
-		ServiceOrder.set("212233719/200821-0025");
+		ServiceOrder.set("877441903/200824-0068");
 		do {
 			Pagerefresh();
 			System.out.println("Page to be refresed");
