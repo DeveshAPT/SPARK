@@ -501,8 +501,8 @@ public class NewOrders extends DriverTestcase {
 		{
 			if (Data[32].toString().equalsIgnoreCase("Offnet")) 
 			{
-				//newOrderOnnnet.get().CEOS_Offnet();
-				//newOrderOnnnet.get().LaunchingCEOSApplication(Data);
+				newOrderOnnnet.get().CEOS_Offnet();
+				newOrderOnnnet.get().LaunchingCEOSApplication(Data);
 				newOrderOnnnet.get().getReferenceNo(Data);// added new
 				newOrderOnnnet.get().CompletedValidation(Data);
 			}

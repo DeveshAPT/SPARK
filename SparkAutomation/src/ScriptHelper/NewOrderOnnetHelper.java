@@ -4449,8 +4449,6 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		Thread.sleep(10000);
 		if (InputData[9].toString().equals("IP VPN Service"))// **Start** Added By Abhay dated 28-Sep-2019
 		{
-
-			
 			WaitforElementtobeclickable(
 					xml.getlocator("//locators/IPVPNSite/ClickLink").replace("Value", "Customer Orders"));
 			Clickon(getwebelement(
@@ -4482,16 +4480,15 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			EnterServiceChargeInFooter(InputData, "2");
 			if (InputData[10].equals("IP VPN Access")||InputData[10].equals("IP VPN Plus")||InputData[10].equals("SWIFTNet")) {
 				OperationalAttributesforIPVPN(InputData);
-				AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
-				ClickHereSave();
 			}
 			else if (InputData[10].equals("IP VPN Wholesale")||InputData[10].equals("PrizmNet")) {
 				WaitforElementtobeclickable(xml.getlocator("//locators/IPVPNSite/ClickLink").replace("Value", "Sites"));
 				Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/ClickLink").replace("Value", "Sites")));
 				waitforPagetobeenable();
-				AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
-				ClickHereSave();
 			}
+			AEndInputEnter("Cabinet ID", Integer.toString(rnd.nextInt(1000)));
+			AEndDropdownSelection("Third Party Access Provider", InputData[66].toString());
+			ClickHereSave();
 			// EnterInstallationChargeInFooter(InputData);
 			InstallationTest();
 			CommercialValidation(InputData);
@@ -4991,7 +4988,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	 */
 	public void Check(Object[] InputData) throws Exception {
 		Thread.sleep(10000);
-		ServiceOrder.set("877442690/200825-0022");
+		ServiceOrder.set("872077649/200825-0028");
 		do {
 			Pagerefresh();
 			System.out.println("Page to be refresed");
@@ -9990,7 +9987,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		{
 			ClickHereSave();
 			AEndDropdownSelection("Third Party Access Provider", InputData[66].toString());
-			AEndDropdownSelection("DSL SLA Class", InputData[67].toString());
+			//AEndDropdownSelection("DSL SLA Class", InputData[67].toString());
 			//AEndDropdownSelection("Third Party SLA Tier", InputData[68].toString());
 		} 
 			
