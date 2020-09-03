@@ -91,7 +91,7 @@ public class CeasHelper extends DriverHelper {
 			System.out.println("Service Order Current Status : " + BillingStatus);
 			// if(isElementPresent(xml.getlocator("//locators/BillingComplete"))) BILLING
 			// ERROR
-			if (BillingStatus.equalsIgnoreCase("COMPLETE")) 
+			if (BillingStatus.equalsIgnoreCase("COMPLETE")||BillingStatus.equalsIgnoreCase("N/A")) 
 			{
 				billing = true;
 				break;

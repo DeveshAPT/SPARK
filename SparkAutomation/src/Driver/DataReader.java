@@ -104,7 +104,7 @@ public class DataReader {
 	public static Object[][] Abandoned() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
 		 XSSFSheet sheet = workbook.getSheet("Abandoned");
@@ -177,10 +177,10 @@ public class DataReader {
 	public static Object[][] Cancelled() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheetAt(9);
+		 XSSFSheet sheet = workbook.getSheet("Cancel");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;

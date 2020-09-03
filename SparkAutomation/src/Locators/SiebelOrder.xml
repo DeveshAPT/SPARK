@@ -69,6 +69,7 @@
   <ServiceOrderGridHeader>//table[@class='ui-jqgrid-htable']//th//div</ServiceOrderGridHeader>
   <ServiceOrderGridItem>//table[@class='ui-jqgrid-btable']//tr[2]//td[-10]</ServiceOrderGridItem>
   <ProductNameList>//div[@class='product-name']</ProductNameList>
+  <MiddleAppSetting>//div[@id='colt-s-order-connection-header']//span[@class='colt-oa-btn colt-oa-std-btn']</MiddleAppSetting>
   <AddProduct>(//div[@class='product-name'])[-10]/parent::li/button</AddProduct>
   <EroGirdRow>//table[@class='ui-jqgrid-btable']//tr[@class!='jqgfirstrow']</EroGirdRow>
   <EroGridData>(//table[@class='ui-jqgrid-btable']//tr[@class!='jqgfirstrow'][-row10]//td[-td10])[1]</EroGridData>
@@ -1014,6 +1015,7 @@
 <ServiceorderOk>//button[@title='Pick Service Orders:OK']</ServiceorderOk>
 
 <RefreshButton>//span[text()='Refresh']</RefreshButton>
+
  
  <!--   Abhay locator Start -->
   <IPVPNSite>
@@ -1047,8 +1049,8 @@
   <AccessPortList>//tr[@class='colt-siteselection-datarow']</AccessPortList>
   <RouterSpecificationSetting>//span[text()='Router Specification']/parent::div/span[@class='colt-oa-btn colt-oa-std-btn colt-oa-Primary-Child']</RouterSpecificationSetting>
    <RouterSpecificationSettingPartial>(//span[contains(@class,'colt-oa-btn colt-oa-std-btn colt-oa-Secondary-Child')])[2]</RouterSpecificationSettingPartial>
- <OperationalAttribueClick>(//table[@summary="Operational Attributes"]//tr[contains(@class,'mandatory')]//td[4])[index]</OperationalAttribueClick>
- <OperationalAttributeText>//table[@summary="Operational Attributes"]//tr[contains(@class,'mandatory')]//td[4]/input</OperationalAttributeText>
+ <OperationalAttribueClick>(//table[@summary="Operational Attributes"]//tr[contains(@class,'mandatory')]//td[-9])[index]</OperationalAttribueClick>
+ <OperationalAttributeText>//table[@summary="Operational Attributes"]//tr[contains(@class,'mandatory')]//td[-9]/input</OperationalAttributeText>
  <OperationalAttributeOK>//button[@aria-label='Operational Attributes:OK']</OperationalAttributeOK>
  <NetworkService>//td[@title='IP VPN Service']</NetworkService>
  <GOIPService>//a[text()='Value']</GOIPService>

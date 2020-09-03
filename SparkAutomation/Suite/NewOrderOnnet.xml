@@ -5,7 +5,7 @@
 		<listener class-name="Listners.TestListener" />
 	</listeners>
 
-	 <!--<test name="Siebel New Order" junit="false" preserve-order="true">
+	 	<test name="Siebel New Order" junit="false" preserve-order="true">
 		<classes>
 			<class name="Testscript.NewOrders">
 				<methods>
@@ -14,7 +14,7 @@
 			</class>
 		</classes>
 	</test>
-	 <test name="Siebel Cease Existing Order" junit="false" preserve-order="true">
+	<!--<test name="Siebel Cease Existing Order" junit="false" preserve-order="true">
 		<classes>
 			<class name="Testscript.NewOrders">
 				<methods>
@@ -32,7 +32,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="Siebel ModTech" junit="false" preserve-order="true">
+	 <test name="Siebel ModTech" junit="false" preserve-order="true">
 		<classes>
 			<class name="Testscript.NewOrders">
 				<methods>
@@ -59,7 +59,7 @@
 			</class>
 		</classes>
 	</test>
-	<test name="OMP" junit="false" preserve-order="true">
+<test name="OMP" junit="false" preserve-order="true">
 		<classes>
 			<class name="Testscript.NewOrders">
 				<methods>
@@ -117,7 +117,7 @@
 				</methods>
 			</class>
 		</classes>
-	</test>-->
+	</test>
 	<test name="Siebel New OffnetOrder" junit="false"
 		preserve-order="true">
 		<classes>
@@ -128,7 +128,7 @@
 			</class>
 		</classes>
 	</test>
-	<!-- <test name="SiebleXtrac" junit="false" preserve-order="true">
+	 <test name="SiebleXtrac" junit="false" preserve-order="true">
 		<classes>
 			<class name="Testscript.NewOrders">
 				<methods>
