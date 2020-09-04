@@ -10065,7 +10065,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		MiddleAppDropdown("Site Type", InputData[50].toString());
 		MiddleAppDropdown("Router Type", InputData[51].toString());
 		MiddleAppDropdown("Layer 3 Resilience", "No Resilience");
-		MiddleAppDropdown("SD WAN Subtype", "NA");
+		//MiddleAppDropdown("SD WAN Subtype", "NA");
 		MiddleAppDropdown("Router Technology", "Managed Physical Router");
 		MiddleAppDropdown("Service Bandwidth (Primary)", InputData[52].toString());
 		MiddleAppTextBox("Capacity Check Reference", InputData[53].toString());
@@ -13004,7 +13004,8 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	}
 	public void MiddleAppOperationAttributes(String Product) throws Exception
 	{
-		if(!Product.equals("IP VPN Service"))
+		//wave, dark fibre, ultra low, private wave service,node
+		if(Product.equals("Wave")||Product.equals("Dark Fibre")||Product.equals("Ultra Low Latency")||Product.equals("Private Wave Service")||Product.equals("Private Wave Node"))
 		{
 		List<WebElement> SeetingList = GetWebElements(xml.getlocator("//locators/MiddleAppSetting"));
 		
@@ -13044,7 +13045,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/OperationalAttribueClick").replace("index", String.valueOf(i + 1)).replace("-9", String.valueOf(Attindex))));
 			WaitforElementtobeclickable(xml.getlocator("//locators/IPVPNSite/OperationalAttributeText").replace("-9",String.valueOf(Attindex)));
 			Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/OperationalAttributeText").replace("-9",String.valueOf(Attindex))));
-			SendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/OperationalAttributeText").replace("-9",String.valueOf(Attindex))), "Test1");
+			ClearSendKeys(getwebelement(xml.getlocator("//locators/IPVPNSite/OperationalAttributeText").replace("-9",String.valueOf(Attindex))), "Test1");
 		}
 		Thread.sleep(3000);
 		WaitforElementtobeclickable(xml.getlocator("//locators/IPVPNSite/OperationalAttributeOK"));

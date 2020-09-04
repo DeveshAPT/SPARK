@@ -260,7 +260,7 @@ public class DriverTestcase {
 
 	@AfterMethod
 	public void Teardown2() {
-		getwebdriver().close();
+		getwebdriver().quit();
 		// dr.close();
 	}
 	public WebDriver getwebdriver() {
