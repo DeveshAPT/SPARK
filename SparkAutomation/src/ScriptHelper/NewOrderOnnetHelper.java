@@ -13004,13 +13004,13 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	}
 	public void MiddleAppOperationAttributes(String Product) throws Exception
 	{
-		
-		if(Product.equals("Voice Line V"))
+		if(!Product.equals("IP VPN Service"))
 		{
 		List<WebElement> SeetingList = GetWebElements(xml.getlocator("//locators/MiddleAppSetting"));
 		
 		if(!SeetingList.isEmpty())
 		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, " Step:Setting Button Found");
 			Clickon(SeetingList.get(0));
 			EnterOpertaionalAttributes();
 			Thread.sleep(3000);
@@ -13024,6 +13024,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		List<WebElement> HeaderList = GetWebElements("//div[@class='AppletStylePopup']//th//div");
 		if(!HeaderList.isEmpty())
 		{
+			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Attribute found");
 		int Attindex = 0;
 		for (WebElement ele : HeaderList) {
 			javascriptexecutor(ele);
