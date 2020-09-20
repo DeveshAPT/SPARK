@@ -410,7 +410,7 @@ public class NewOrders extends DriverTestcase {
 		String BuildingID = null;
 		String NewSiteId = null;
 		String UpdateSiteID = null;
-		String ProductName = Data[8].toString();
+		String ProductName = Data[9].toString();
 		Login.get().Login("Sieble");
 		String CurrentUrl = Login.get().GetCurrentUrl();
 		// newOrderOnnnet.get().OpenServiceOrder(Data);

@@ -379,7 +379,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 
 		SendKeys(getwebelement(xml.getlocator("//locators/DeliveryChannel")), InputData[4].toString());
 		ExtentTestManager.getTest().log(LogStatus.PASS,
-				" Step: Enter Delivery Channel as : " + InputData[3].toString());
+				" Step: Enter Delivery Channel as : " + InputData[4].toString());
 
 		// New Code
 		WaitforElementtobeclickable(xml.getlocator("//locators/OrderingPartySearch"));
