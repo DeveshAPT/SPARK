@@ -1524,7 +1524,6 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Clickon(getwebelement(newloc));
 			newloc = span.replaceAll("ind", Integer.toString(Index));
 			Clickon(getwebelement(newloc));
-
 			Thread.sleep(5000);
 			WaitforElementtobeclickable(xml.getlocator("//locators/StreetNameAccess"));
 			SendKeys(getwebelement(xml.getlocator("//locators/StreetNameAccess")), Inputdata[37].toString());
@@ -1687,7 +1686,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			TrunkInputs("Colt Host Equipment IPv4 Address", "10.7.235.24/2");
 			TrunkInputs("Colt Host Equipment IPv6 Address", "10.7.235.24/2");
 			TrunkDropdown("NAT Required?", "N");
-			TrunkInputs("public IPv4 Address Range for NAT Side", "2");
+			TrunkInputs("Public IPv4 Address Range for NAT Side", "2");
 			TrunkInputs("Proportion%", "20");
 			TrunkDropdown("Encryption Type", "TLS on, SRTP off");
 			TrunkInputs("NNI WAN IPv4 Address Range (/30)", "10.7.235.24");
@@ -2909,7 +2908,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			addSiteBDetails(InputData);// Updated With Excel
 			DarkFibreSiteEntries(InputData);
 			// OperationalAttributeUltra(InputData);
-			OperationalAttributeDarkFibre();
+			//OperationalAttributeDarkFibre();
 			ClickHereSave();
 			break;
 		}
@@ -3191,10 +3190,11 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			ExtentTestManager.getTest().log(LogStatus.PASS, "Click on SIP Ok Selection Button");
 
 			Thread.sleep(5000);
-			/* ABove code for Trunk including IPPBX code */
+			//ABove code for Trunk including IPPBX code 
 
 			// Other Tab in Voice Config
 
+			safeJavaScriptClick(getwebelement(xml.getlocator("//locators/SIPOtherTab")));
 			safeJavaScriptClick(getwebelement(xml.getlocator("//locators/SIPOtherTab")));
 			WaitforElementtobeclickable(xml.getlocator("//locators/SIPOtherTab"));
 			Clickon(getwebelement(xml.getlocator("//locators/SIPOtherTab")));
@@ -3372,7 +3372,6 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Save();
 
 			TrunkEntries(InputData[9].toString(), InputData[59].toString());
-
 			WaitforElementtobeclickable(xml.getlocator("//locators/VoiceTab"));
 			Clickon(getwebelement(xml.getlocator("//locators/VoiceTab")));
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step:Click on voice feature tab");
@@ -5000,7 +4999,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	 */
 	public void Check(Object[] InputData) throws Exception {
 		Thread.sleep(10000);
-		ServiceOrder.set("212265601/200903-0025");
+		ServiceOrder.set("228433212/200920-0012");
 		do {
 			Pagerefresh();
 			System.out.println("Page to be refresed");
@@ -13004,6 +13003,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	}
 	public void MiddleAppOperationAttributes(String Product) throws Exception
 	{
+		
 		//wave, dark fibre, ultra low, private wave service,node
 		if(Product.equals("Wave")||Product.equals("Dark Fibre")||Product.equals("Ultra Low Latency")||Product.equals("Private Wave Service")||Product.equals("Private Wave Node"))
 		{

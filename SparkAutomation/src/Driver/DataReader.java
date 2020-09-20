@@ -13,8 +13,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.testng.annotations.DataProvider;
 
-public class DataReader {
-	
+public class DataReader 
+{
 	
 	@DataProvider(name="NewOrderOnnet", parallel=true)
 	public static Object[][] NewOrder() throws IOException
@@ -250,10 +250,10 @@ public class DataReader {
 	public static Object[][] InFlightreader() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheet("Cancel");
+		 XSSFSheet sheet = workbook.getSheet("Inflight");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
@@ -323,10 +323,10 @@ public class DataReader {
 	public static Object[][] OmpDatereader() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheet("New_OMP");
+		 XSSFSheet sheet = workbook.getSheet("NewOMP");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
@@ -396,10 +396,10 @@ public class DataReader {
 	public static Object[][] OmpDatereaderMod() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheet("Mod_OMP");
+		 XSSFSheet sheet = workbook.getSheet("ModOMP");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
@@ -1131,10 +1131,10 @@ public class DataReader {
 	public static Object[][] PartialDelivery() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
-		 XSSFSheet sheet = workbook.getSheetAt(4);
+		 XSSFSheet sheet = workbook.getSheet("PartialDelivery");
 		 XSSFRow r1=sheet.getRow(0);
 		 XSSFRow r;
 		 int rowindex=0;
@@ -1204,7 +1204,7 @@ public class DataReader {
 	public static Object[][] SiebelXtrac() throws IOException
 	{
 	
-		FileInputStream file = new FileInputStream(new File("src//Data//InputData.xlsx"));
+		FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 		
 		 XSSFWorkbook workbook = new XSSFWorkbook(file);
 		 XSSFSheet sheet = workbook.getSheet("Xtrac");
