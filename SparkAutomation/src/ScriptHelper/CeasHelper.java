@@ -496,15 +496,32 @@ public class CeasHelper extends DriverHelper {
 		waitForpageload();
 		waitforPagetobeenable();
 		String _curdate= CurrentDate();
-		SendKeys(getwebelement(xml.getlocator("//locators/OrderSignedDate")),_curdate );
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Signed Date");
+		
+		String temp = "//div/input[@aria-label='Customer Requested Date']/parent::div/span";
+		System.out.println(temp);
 
-		SendKeys(getwebelement(xml.getlocator("//locators/OrderReceivedDate")), _curdate);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date");
-
-		SendKeys(getwebelement(xml.getlocator("//locators/CustomerRequestedDate")), _curdate);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date");
-
+		List<WebElement> RequestListDate = GetWebElements(temp);
+		WebElement ele1 = RequestListDate.get(1);
+		Clickon(ele1);
+		CalenderdateSelection(CurrentDate());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Customer Requested Date " + CurrentDate());
+		
+		
+		temp = xml.getlocator("//locators/OrderDateField/CalendrButton");
+		temp = temp.replace("Value", "Order Signed Date");
+		WaitforElementtobeclickable(temp);
+		Clickon(getwebelement(temp));
+		CalenderdateSelection(CurrentDate());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Signed Date " + CurrentDate());
+		
+		temp = xml.getlocator("//locators/OrderDateField/CalendrButton");
+		temp = temp.replace("Value", "Order Received Date");
+		WaitforElementtobeclickable(temp);
+		Clickon(getwebelement(temp));
+		CalenderdateSelection(CurrentDate());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date " + CurrentDate());
+		
+			
 		WaitforElementtobeclickable(xml.getlocator("//locators/Billing"));
 		Clickon(getwebelement(xml.getlocator("//locators/Billing")));
 		System.out.println("BILLING TAB");
@@ -513,16 +530,18 @@ public class CeasHelper extends DriverHelper {
 		waitForpageload();
 		waitforPagetobeenable();
 		System.out.println("Current Date : " + CurrentDate());
-		String fDate = FutureDate(15);
+		String fDate = FutureDate(1);
 		System.out.println("Future Date : " + fDate);
-		SendKeys(getwebelement(xml.getlocator("//locators/BillingEndDate")), fDate);
-		Thread.sleep(10000);
-		// SendkeaboardKeys(getwebelement(xml.getlocator("//locators/BillingEndDate")),
-		// Keys.TAB);
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Billing End Date : " + fDate);
-		// ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Contract
+		
+		temp = xml.getlocator("//locators/OrderDateField/CalendrButton");
+		temp = temp.replace("Value", "Billing End Date");
+		WaitforElementtobeclickable(temp);
+		Clickon(getwebelement(temp));
+		CalenderdateSelection(fDate);
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Order Received Date " + CurrentDate());
+		
 		// Term");
-		SendkeaboardKeys(getwebelement(xml.getlocator("//locators/BillingEndDate")), Keys.TAB);
+		
 		Clickon(getwebelement(xml.getlocator("//locators/POStartDateAccess")));
 		try 
 		{

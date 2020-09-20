@@ -251,16 +251,16 @@ public class DriverTestcase {
 		DOMConfigurator.configure("log4j.xml");
 	}
 
-//@AfterTest
+	@AfterTest
 	public void Teardown() 
 	{
 		//dr.close();
 		getwebdriver().quit();
 	}
-
+	
 	@AfterMethod
-	public void Teardown2() {
-		getwebdriver().quit();
+	public void CleanUp() {
+		getwebdriver().close();
 		// dr.close();
 	}
 	public WebDriver getwebdriver() {

@@ -93,7 +93,7 @@ public class NewOrders extends DriverTestcase {
 		Cease.get().CeaseCommercialValidation(Data[1].toString());
 		Cease.get().DeliveryValidation(Data[1].toString());
 		newOrderOnnnet.get().clickOnManualValidationA();
-		// Cease.get().CeaseCompletedValidation();
+		Cease.get().CeaseCompletedValidation();
 	}
 
 	@Test(dataProviderClass = DataReader.class, dataProvider = "Mode")
@@ -605,11 +605,13 @@ public class NewOrders extends DriverTestcase {
 		newOrderOnnnet.get().InstallationTest();
 		newOrderOnnnet.get().DeliveryValidation(Data);
 		newOrderOnnnet.get().clickOnManualValidationA();
-		if (!Data[8].toString().equalsIgnoreCase("IP VPN Service")) {
-			Cancelled.get().statusReason(Data);
-			Cancelled.get().CancelOrder(Data);
-			Cancelled.get().verifyOrderCancelled();
-		} else {
+		if (!Data[9].toString().equalsIgnoreCase("IP VPN Service")) 
+		{
+			//Cancelled.get().statusReason(Data);
+			//Cancelled.get().CancelOrder(Data);
+			//Cancelled.get().verifyOrderCancelled();
+		} 
+		else {
 			newOrderOnnnet.get().CompletedValidationforCancel(Data);
 			Cancelled.get().statusReason(Data);
 			Cancelled.get().CancelOrder(Data);
