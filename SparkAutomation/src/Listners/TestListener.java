@@ -1,5 +1,7 @@
 package Listners;
 
+import java.io.IOException;
+
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -29,6 +31,7 @@ public class TestListener extends DriverTestcase implements ITestListener {
 	        iTestContext.setAttribute("WebDriver", this.getwebdriver());
 	        
 	        System.out.println("Driver instance in Listemer"+this.getwebdriver());
+	       
 	    }
 	 
 	    //After ending all tests, below method runs.
@@ -53,6 +56,14 @@ public class TestListener extends DriverTestcase implements ITestListener {
 	        //Extentreports log operation for passed tests.
 	      ExtentTestManager.getTest().log(LogStatus.PASS, getTestMethodName(iTestResult)+" : Test Method has been passed");
 	      ExtentTestManager.endTest();
+	      try 
+	      {
+	    	ExtentTestManager.ReportToExcel(iTestResult.getTestContext().getCurrentXmlTest().getName().toString()+"-"+iTestResult.getTestContext().getAttribute("testName").toString(), "Passed");
+	      } 
+	      catch (IOException e) 
+	      {
+			e.printStackTrace();
+	      }
 	      //ExtentTestManager.endTest();
 	      ExtentManager.getReporter().flush();
 	    }
@@ -61,7 +72,7 @@ public class TestListener extends DriverTestcase implements ITestListener {
 	       // Log.info("I am on TestFailure method " +  getTestMethodName(iTestResult) + " failed");
 	        //iTestResult.setStatus(0);
 	        //Get driver from BaseTest and assign to local webdriver variable.
-	    ExtentTestManager.getTest().log(LogStatus.FAIL, getTestMethodName(iTestResult)+" : Test Method has been Failed");
+	    	ExtentTestManager.getTest().log(LogStatus.FAIL, getTestMethodName(iTestResult)+" : Test Method has been Failed");
 	        Object testClass = iTestResult.getInstance();
 	        //iTestResult.setStatus(arg0);
 	        WebDriver webDriver = ((DriverTestcase) testClass).getwebdriver();
@@ -76,6 +87,14 @@ public class TestListener extends DriverTestcase implements ITestListener {
 	        ExtentTestManager.getTest().log(LogStatus.FAIL,Message+
 	                ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
 	        ExtentTestManager.endTest();
+	        try 
+		      {
+		    	ExtentTestManager.ReportToExcel(iTestResult.getTestContext().getCurrentXmlTest().getName().toString()+"-"+iTestResult.getTestContext().getAttribute("testName").toString(), "Failed");
+		      } 
+		      catch (IOException e) 
+		      {
+				e.printStackTrace();
+		      }
 	        ExtentManager.getReporter().flush();
 	    }
 	 
@@ -90,7 +109,16 @@ public class TestListener extends DriverTestcase implements ITestListener {
 	            //Take base64Screenshot screenshot.
 	            String base64Screenshot = "data:image/png;base64,"+((TakesScreenshot)getwebdriver()).
 	                    getScreenshotAs(OutputType.BASE64);
+	            
 	            ExtentTestManager.endTest();
+	            try 
+			      {
+			    	ExtentTestManager.ReportToExcel(iTestResult.getTestContext().getCurrentXmlTest().getName().toString()+"-"+iTestResult.getTestContext().getAttribute("testName").toString(), "Error");
+			      } 
+			      catch (IOException e) 
+			      {
+					e.printStackTrace();
+			      }
 	            //Extentreports log and screenshot operations for failed tests.
 	          //  ExtentTestManager.getTest().log(LogStatus.ERROR,"Test Errored",
 	           //         ExtentTestManager.getTest().addBase64ScreenShot(base64Screenshot));
