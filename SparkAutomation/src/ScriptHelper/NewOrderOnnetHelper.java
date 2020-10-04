@@ -15,6 +15,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.awt.Robot;
+import ScriptHelper.ServiceOrders;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
@@ -77,6 +78,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	XMLReader xmlIP = new XMLReader("src\\Locators\\IPVoiceSolution.xml");
 	XMLReader xml3 = new XMLReader("src\\Locators\\SiebelOrderEtherline.xml"); // added by shivananda
 	XMLReader xmlHns = new XMLReader("src\\Locators\\EtherNetHubSpoke.xml");
+	//static ServiceOrders orders=new ServiceOrders();
 
 	public void accountTabDetails(Object[] InputData) throws Exception {
 
@@ -415,14 +417,15 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	public void openServiceOrderNumber() throws Exception {
 		ServiceOrder.set(Gettext(getwebelement(xml.getlocator("//locators/ServiceOrderReferenceNo"))));
 		System.out.println("Service Order number : "+ServiceOrder.get());
-		ExtentTestManager.getTest().log(LogStatus.PASS,
-				" Step: Generated Service Order Reference No: " + ServiceOrder.get());
+		ExtentTestManager.getTest().log(LogStatus.PASS," Step: Generated Service Order Reference No: " + ServiceOrder.get());
 		Log.info(ServiceOrder.get());
-
+		System.out.println("Service Order A : "+ServiceOrder.get());
+		
+		ServiceOrders.setPrimaryServiceOrder(ServiceOrder.get());
+		System.out.println("Service Order B : "+ServiceOrders.getPrimaryServiceOrder());
 		Clickon(getwebelement(xml.getlocator("//locators/ServiceOrderReferenceNo")));
 		waitForpageload();
-		ExtentTestManager.getTest().log(LogStatus.PASS,
-				" Step: Click on Service Order Reference No :" + ServiceOrder.get());
+		ExtentTestManager.getTest().log(LogStatus.PASS," Step: Click on Service Order Reference No :" + ServiceOrder.get());
 		Thread.sleep(5000);
 	}
 
@@ -4414,6 +4417,12 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		if (isDisplayed(xml.getlocator("//locators/manualvalidation1"))) {
 
 			// Waitforvisibilityofelement(xml.getlocator("//locators/manualvalidation"));
+			if (isElementPresent(xml.getlocator("//locators/SubnetworkPopUP"))) {
+				System.out.println("");
+				System.out.println("Alert Present");
+				WaitforElementtobeclickable((xml.getlocator("//locators/SubnetworkPopUP")));
+				Clickon(getwebelement(xml.getlocator("//locators/SubnetworkPopUP")));
+			}
 			WaitforElementtobeclickable(xml.getlocator("//locators/manualvalidation1"));
 			Clickon(getwebelement(xml.getlocator("//locators/manualvalidation1")));
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click Manual Validation Button");
@@ -10565,10 +10574,9 @@ public class NewOrderOnnetHelper extends DriverHelper {
 	public void openIPVPNSite() throws Exception {
 		{
 			ServiceOrder2.set(Gettext(getwebelement(xml.getlocator("//locators/IPVPNSite/ServiceOrderReferenceNo2"))));
-			ExtentTestManager.getTest().log(LogStatus.PASS,
-					" Step: Generated Service Order Reference No: " + ServiceOrder2.get());
+			ExtentTestManager.getTest().log(LogStatus.PASS," Step: Generated Service Order Reference No: " + ServiceOrder2.get());
 			Log.info(ServiceOrder2.get());
-
+			ServiceOrders.setSubServiceOrder(ServiceOrder2.get());
 			Clickon(getwebelement(xml.getlocator("//locators/IPVPNSite/ServiceOrderReferenceNo2")));
 			waitforPagetobeenable();
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Service Order Reference No");

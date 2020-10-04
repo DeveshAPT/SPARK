@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import ScriptHelper.ServiceOrders;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
@@ -23,7 +24,8 @@ public class ExtentTestManager {
 	
 	static Map extentTestMap = new HashMap();
     static ExtentReports extent = ExtentManager.getReporter();
- 
+    //static ServiceOrders orders=new ServiceOrders();
+   
     public static synchronized ExtentTest getTest() {
     	
         return (ExtentTest)extentTestMap.get((int) (long) (Thread.currentThread().getId()));
@@ -42,7 +44,8 @@ public class ExtentTestManager {
     }
     public static String CurrentDate()
 	{
-		Date date = new Date();
+    	
+    	Date date = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		return (formatter.format(date));
 
@@ -63,7 +66,9 @@ public class ExtentTestManager {
 		AppendData(path,testName, result);
 	}
 
-    public static void createFile(String Path) throws IOException {
+    public static void createFile(String Path) throws IOException 
+    {
+    	
 		FileOutputStream fos = new FileOutputStream(Path);
 		XSSFWorkbook workbook = new XSSFWorkbook();
 		XSSFSheet sheet = workbook.createSheet("ExecutionSummary");
@@ -72,10 +77,17 @@ public class ExtentTestManager {
 		cell0.setCellValue("TestJourney");
 
 		Cell cell1 = row.createCell(1);
-		cell1.setCellValue("Result");
-
+		cell1.setCellValue("ServiceOrder");
+		
 		Cell cell2 = row.createCell(2);
-		cell2.setCellValue("Date");
+		cell2.setCellValue("SubServiceOrder");
+		
+		Cell cell3 = row.createCell(3);
+		cell3.setCellValue("Result");
+
+		Cell cell4 = row.createCell(4);
+		cell4.setCellValue("Date");
+		
 		workbook.write(fos);
 		fos.flush();
 		fos.close();
@@ -83,7 +95,7 @@ public class ExtentTestManager {
 
     public static void AppendData(String Path,String testName, String result) throws FileNotFoundException {
 		try {
-
+			
 			FileInputStream fis = new FileInputStream(new File(Path));
 			XSSFWorkbook workbook = new XSSFWorkbook(fis);
 			//String cururl = CurrentUrl();
@@ -97,8 +109,11 @@ public class ExtentTestManager {
 			Row row = sheet.createRow(++num);
 			
 			row.createCell(0).setCellValue(testName);
-			row.createCell(1).setCellValue(result);
-			row.createCell(2).setCellValue(CurrentDate());
+			row.createCell(1).setCellValue(ServiceOrders.getPrimaryServiceOrder());
+			row.createCell(2).setCellValue(ServiceOrders.getSubServiceOrder());
+			row.createCell(3).setCellValue(result);
+			//row.createCell(1).setCellValue(ServiceOrder.get());
+			row.createCell(4).setCellValue(CurrentDate());
 		
 			fis.close();
 			FileOutputStream fos = new FileOutputStream(Path);

@@ -3,13 +3,16 @@ package Driver;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
 import java.util.ArrayList;
@@ -18,6 +21,11 @@ import java.util.function.Function;
 
 import javax.imageio.ImageIO;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -394,12 +402,55 @@ public class DriverHelper
 		return el;
 	}
 
+	public   Map<String, String> getLinksData() throws IOException 
+	{ 
+		  FileInputStream fis = new FileInputStream(new File("src//Data//ApplicationLinks.xlsx"));
+	
+		  Workbook workbook = new XSSFWorkbook(fis);
+		
+		  Sheet sheet = workbook.getSheetAt(0);
+		  
+		  int lastRow = sheet.getLastRowNum();
+		  
+		 // Map<String, Map<String, String>> excelFileMap = new HashMap<String, Map<String,String>>();
+		  
+		  Map<String, String> dataMap = new HashMap<String, String>();
+		  
+		  //Looping over entire row
+		  for(int i=0; i<=lastRow; i++){
+			  
+			  Row row = sheet.getRow(i);
+			  
+			  //1st Cell as Value
+			  Cell valueCell = row.getCell(1);
+				  
+			  //0th Cell as Key
+			  Cell keyCell = row.getCell(0);
+				  
+			  String value = valueCell.getStringCellValue().trim();
+			  String key = keyCell.getStringCellValue().trim();
+				  
+			  //Putting key & value in dataMap
+			  dataMap.put(key, value);
+				  
+			  //Putting dataMap to excelFileMap
+			 // excelFileMap.put("DataSheet", dataMap);
+		  }
+		  
+		 //Returning excelFileMap
+		return dataMap;
+
+	}
+	
 	public void openurl(String environment) throws Exception
 	{
-		String URL = null;
-		PropertyReader pr = new PropertyReader();
+		System.out.println("Satrt Looking Link For : "+ environment);
+		Map<String, String> dataMap=getLinksData();
+		String URL = dataMap.get(environment);
+		System.out.println("read from hasMap: "+ URL);
+		//PropertyReader pr = new PropertyReader();
 		Log.info(environment + "_URL");
-		URL = pr.readproperty(environment + "_URL");
+		//URL = pr.readproperty(environment + "_URL");
 
 		driver.get(URL);
 
