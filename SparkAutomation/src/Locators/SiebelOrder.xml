@@ -760,7 +760,7 @@
 <CallDistribution>//*[@id="1_s_1_l_Call_Distribution"]</CallDistribution>
 <callDistributioninput>//input[@class='siebui-list-ctrl siebui-ctrl-select siebui-input-popup siebui-align-left siebui-input-align-left ui-autocomplete-input']</callDistributioninput>
 <CallDistributionDropDown>//span[@class='siebui-icon-dropdown']</CallDistributionDropDown>
-<CallDistributionValue>//li[text()='Sequential']</CallDistributionValue>
+<CallDistributionValue>//li[text()='No']</CallDistributionValue>
 <AssignedPortNew>//button[@aria-label='Assigned ISDN Port:New']</AssignedPortNew>
 <Unassignedport>//button[@aria-label='Unassigned Ports:OK']</Unassignedport>
 <NumberRangeTab>//a[ text()='Number Range']</NumberRangeTab>

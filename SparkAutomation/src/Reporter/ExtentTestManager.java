@@ -1,5 +1,10 @@
 package Reporter;
 
+import java.util.HashMap;
+import java.util.Map;
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,17 +12,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import ScriptHelper.ServiceOrders;
 
-import com.relevantcodes.extentreports.ExtentReports;
-import com.relevantcodes.extentreports.ExtentTest;
+
 
 public class ExtentTestManager {
 	
@@ -42,7 +43,9 @@ public class ExtentTestManager {
         extentTestMap.put((int) (long) (Thread.currentThread().getId()), test);
         return test;
     }
-    public static String CurrentDate()
+   
+   // Report To Excel 	 
+ public static String CurrentDate()
 	{
     	
     	Date date = new Date();
@@ -50,6 +53,7 @@ public class ExtentTestManager {
 		return (formatter.format(date));
 
 	}
+
     public static void  ReportToExcel(String testName,String result) throws IOException 
     {
 		String Stamp=CurrentDate().replace("/", "_");

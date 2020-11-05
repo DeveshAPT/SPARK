@@ -102,6 +102,7 @@ public class NewOrders extends DriverTestcase {
 		String Product = Data[9].toString().trim();
 		String SubProduct = Data[10].toString().trim();
 		Login.get().Login("Sieble");
+		//System.out.println(SubProduct);
 		if (Data[0].toString().equalsIgnoreCase("Yes")) 
 		{
 			newOrderOnnnet.get().accountTabDetails(Data);
@@ -636,9 +637,9 @@ public class NewOrders extends DriverTestcase {
 		newOrderOnnnet.get().clickOnManualValidationA();
 		if (!Data[9].toString().equalsIgnoreCase("IP VPN Service")) 
 		{
-			//Cancelled.get().statusReason(Data);
-			//Cancelled.get().CancelOrder(Data);
-			//Cancelled.get().verifyOrderCancelled();
+			Cancelled.get().statusReason(Data);
+			Cancelled.get().CancelOrder(Data);
+			Cancelled.get().verifyOrderCancelled();
 		} 
 		else {
 			newOrderOnnnet.get().CompletedValidationforCancel(Data);

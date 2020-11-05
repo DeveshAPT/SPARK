@@ -404,11 +404,11 @@ public class DriverHelper
 
 	public   Map<String, String> getLinksData() throws IOException 
 	{ 
-		  FileInputStream fis = new FileInputStream(new File("src//Data//ApplicationLinks.xlsx"));
+		  FileInputStream fis = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 	
 		  Workbook workbook = new XSSFWorkbook(fis);
 		
-		  Sheet sheet = workbook.getSheetAt(0);
+		  Sheet sheet = workbook.getSheet("Weblinks");
 		  
 		  int lastRow = sheet.getLastRowNum();
 		  
@@ -451,16 +451,12 @@ public class DriverHelper
 		//PropertyReader pr = new PropertyReader();
 		Log.info(environment + "_URL");
 		//URL = pr.readproperty(environment + "_URL");
-
 		driver.get(URL);
-
 	}
 
 	public void Geturl(String URL) throws Exception
 	{
-
 		driver.get(URL);
-
 	}
 
 	public String CurrentUrl()

@@ -334,6 +334,11 @@ public class CeasHelper extends DriverHelper {
 		waitforPagetobeenable();
 		waitForpageload();
 		Thread.sleep(7000);
+		
+		String SourceRef = "Test" + Integer.toString(GetRandomNumber(20));
+		
+		SendKeys(getwebelement("//input[@aria-labelledby='COLT_Service_Order_Source_Ref_Label']"),SourceRef);
+		
 		WaitforElementtobeclickable(xml.getlocator("//locators/OrderSubTypeSearch"));
 		Clickon(getwebelement(xml.getlocator("//locators/OrderSubTypeSearch")));
 		System.out.println("Enter New Order");
@@ -343,6 +348,7 @@ public class CeasHelper extends DriverHelper {
 		Clickon(getwebelement(xml.getlocator("//locators/AddOrderSubType")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Add Order Sub Type");
 
+		
 		SendKeys(getwebelement(xml.getlocator("//locators/InputOrderSubType")), "All");
 		SendkeaboardKeys(getwebelement(xml.getlocator("//locators/InputOrderSubType")), Keys.ENTER);
 		SendkeaboardKeys(getwebelement(xml.getlocator("//locators/InputOrderSubType")), Keys.TAB);

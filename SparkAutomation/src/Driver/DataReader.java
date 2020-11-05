@@ -766,10 +766,10 @@ public class DataReader
 	public static Object[][] EOL() throws IOException
 			{
 			
-				FileInputStream file = new FileInputStream(new File("src//Data//EOLorder.xlsx"));
+				FileInputStream file = new FileInputStream(new File("src//Data//NewInputData.xlsx"));
 				//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 				 XSSFWorkbook workbook = new XSSFWorkbook(file);
-				 XSSFSheet sheet = workbook.getSheetAt(0);
+				 XSSFSheet sheet = workbook.getSheet("NewInputData");
 				 XSSFRow r1=sheet.getRow(0);
 				 XSSFRow r;
 				 int rowindex=0;
@@ -842,7 +842,7 @@ public class DataReader
 				FileInputStream file = new FileInputStream(new File("src//Data//EOLorder.xlsx"));
 				//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 				 XSSFWorkbook workbook = new XSSFWorkbook(file);
-				 XSSFSheet sheet = workbook.getSheetAt(3);
+				 XSSFSheet sheet = workbook.getSheet("EOL-ModCom");
 				 XSSFRow r1=sheet.getRow(0);
 				 XSSFRow r;
 				 int rowindex=0;
@@ -915,7 +915,7 @@ public class DataReader
 				FileInputStream file = new FileInputStream(new File("src//Data//EOLorder.xlsx"));
 				//FileInputStream file = new FileInputStream(new File("C:\\Users\\ASharma19-adm\\git\\Spark\\SparkAutomation\\src\\Data\\EtherNetP2PNewOrder.xlsx"));
 				 XSSFWorkbook workbook = new XSSFWorkbook(file);
-				 XSSFSheet sheet = workbook.getSheetAt(4);
+				 XSSFSheet sheet = workbook.getSheet("EOL-ModTech");
 				 XSSFRow r1=sheet.getRow(0);
 				 XSSFRow r;
 				 int rowindex=0;

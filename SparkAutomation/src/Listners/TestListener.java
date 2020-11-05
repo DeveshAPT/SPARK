@@ -1,20 +1,15 @@
 package Listners;
-
 import java.io.IOException;
-
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import com.relevantcodes.extentreports.LogStatus;
-
-
 import Driver.DriverTestcase;
 import Driver.Log;
-//import ScriptHelper.NewOrderOnnetHelper;
+
 import Reporter.ExtentManager;
 import Reporter.ExtentTestManager;
 

@@ -45,6 +45,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
+import com.ibm.icu.impl.ICUService.Key;
 import com.relevantcodes.extentreports.LogStatus;
 
 import Driver.DriverHelper;
@@ -521,6 +522,11 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		Thread.sleep(3000);
 		SendkeaboardKeys(getwebelement("//input[@aria-labelledby='COLT_Order_Item_Sub_Type_Label']"), Keys.TAB);
 		Thread.sleep(3000);
+		
+		String SourceRef = "Test" + Integer.toString(GetRandomNumber(20));
+		
+		SendKeys(getwebelement("//input[@aria-labelledby='COLT_Service_Order_Source_Ref_Label']"),SourceRef);
+		
 		WaitforElementtobeclickable(xml.getlocator("//locators/ContractSearch"));
 		Clickon(getwebelement(xml.getlocator("//locators/ContractSearch")));
 		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on Contract Search");
@@ -1088,7 +1094,25 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Clickon(getwebelement(xml.getlocator("//locators/NumberManagementTab")));
 			ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Click on NumberManagementTab");
 			Thread.sleep(15000);
-			Clickon(getwebelement(xml.getlocator("//locators/NumberRangeStatus")));
+			
+			String Ok = "//div[contains(@style,'block') and contains(@class,'ui-draggable ui-resizable')]//button[contains(@title,'OK')]";
+			String loc = "//table[@id='s_1_l']//tr[@id='1']/td[ind]";
+			String span = "//table[@id='s_1_l']//tr[@id='1']/td[ind]//span";
+			String input = "//table[@id='s_1_l']//tr[@id='1']/td[ind]//input";
+			
+			// Number Range Status
+			int	Index = NumberTabIndex("Number Range Status");
+			System.out.println(Index);
+			String newloc = loc.replaceAll("ind", Integer.toString(Index));
+			Clickon(getwebelement(newloc));
+						// temp="//table[@id='s_1_l']//tr[@id='1']/td[ind]//span";
+			newloc = span.replaceAll("ind", Integer.toString(Index));
+						
+			Clickon(getwebelement(newloc));
+						
+			ClearSendKeys(getwebelement(newloc), "Active"+Keys.ENTER);
+			
+			/*Clickon(getwebelement(xml.getlocator("//locators/NumberRangeStatus")));
 			Thread.sleep(5000);
 			WaitforElementtobeclickable(xml.getlocator("//locators/NumberRangeStatusDropDown"));
 			Clickon(getwebelement(xml.getlocator("//locators/NumberRangeStatusDropDown")));
@@ -1096,7 +1120,7 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			WaitforElementtobeclickable(xml.getlocator("//locators/NumberRangeStatusValueActive"));
 			Clickon(getwebelement(xml.getlocator("//locators/NumberRangeStatusValueActive")));
 			Thread.sleep(5000);
-			waitforPagetobeenable();
+			waitforPagetobeenable();*/
 			/*
 			 * Clickon(getwebelement(xml.getlocator("//locators/ManualValidation")));
 			 * ExtentTestManager.getTest().log(LogStatus.PASS,
@@ -1375,8 +1399,11 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Clickon(getwebelement(newloc));
 			// temp="//table[@id='s_1_l']//tr[@id='1']/td[ind]//span";
 			newloc = span.replaceAll("ind", Integer.toString(Index));
+			
 			Clickon(getwebelement(newloc));
-			Clickon(getwebelement(xml.getlocator("//locators/SelectValueDropdown").replace("Value", "Allocate")));
+			
+			ClearSendKeys(getwebelement(newloc), "Allocate"+Keys.ENTER);
+			//Clickon(getwebelement(xml.getlocator("//locators/SelectValueDropdown").replace("Value", "Allocate")));
 
 			// Port GroupID
 			Index = NumberTabIndex("Port Group ID");
@@ -1508,7 +1535,8 @@ public class NewOrderOnnetHelper extends DriverHelper {
 			Clickon(getwebelement(newloc));
 			newloc = input.replaceAll("ind", Integer.toString(Index));
 			Clickon(getwebelement(newloc));
-			Clickon(getwebelement(xml.getlocator("//locators/SelectValueDropdown").replace("Value", "Allocate")));
+			ClearSendKeys(getwebelement(newloc), "Allocate"+Keys.ENTER);
+			//Clickon(getwebelement(xml.getlocator("//locators/SelectValueDropdown").replace("Value", "Allocate")));
 
 			// BCN
 			Index = NumberTabIndex("BCN");
@@ -4925,10 +4953,16 @@ public class NewOrderOnnetHelper extends DriverHelper {
 		Thread.sleep(2000);
 		waitforPagetobeenable();
 		Thread.sleep(3000);
-		Clickon(getwebelement("//input[@aria-labelledby='COLT_ProContact_FullName_Label']/following-sibling::span"));
+		
+		String SourceRef = "Test" + Integer.toString(GetRandomNumber(20));
+		
+		SendKeys(getwebelement("//input[@aria-labelledby='COLT_Service_Order_Source_Ref_Label']"),SourceRef);
+		waitforPagetobeenable();
+		Thread.sleep(3000);
+		/*Clickon(getwebelement("//input[@aria-labelledby='COLT_ProContact_FullName_Label']/following-sibling::span"));
 		Thread.sleep(5000);
 		WaitforElementtobeclickable("//button[@aria-label='Pick Contact:OK']");
-		Clickon(getwebelement("//button[@aria-label='Pick Contact:OK']"));
+		Clickon(getwebelement("//button[@aria-label='Pick Contact:OK']"));*/
 		Thread.sleep(8000);
 		waitforPagetobeenable();
 		if (InputData[9].toString().equalsIgnoreCase("Ethernet VPN Access")
