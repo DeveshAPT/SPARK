@@ -292,7 +292,7 @@ public class PremiseMasterHelper extends DriverHelper
 	public HashMap<String, String> AddSiteAndBuilding(Object[] InputData) throws InterruptedException, DocumentException, IOException {
 		
 		HashMap<String, String> SiteValues=new HashMap<>();
-		String ProductName = InputData[8].toString();
+		String ProductName = InputData[9].toString();
 		/*if(ProductName.equalsIgnoreCase("Ethernet Spoke")||ProductName.equalsIgnoreCase("Ethernet Hub")||ProductName.equalsIgnoreCase("Ethernet Line")||ProductName.equalsIgnoreCase("Wave"))
 		{
 			WaitforElementtobeclickable(xml.getlocator("//locators/Hub/Street"));
@@ -400,32 +400,32 @@ public class PremiseMasterHelper extends DriverHelper
 		WaitforElementtobeclickable(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Street Name"));
 		Clear(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Street Name")));
 		SendKeys(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Street Name")),
-				InputData[19].toString());
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Street: " + InputData[19].toString());
+				InputData[20].toString());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Street: " + InputData[20].toString());
 
 		WaitforElementtobeclickable(xmlS.getlocator("//locators/R4/SearchDropdown").replace("Value", "Country"));
 		Clickon(getwebelement(xmlS.getlocator("//locators/R4/SearchDropdown").replace("Value", "Country")));
 		Clickon(getwebelement(
-				xmlS.getlocator("//locators/R4/SiteABSelection").replace("Value", InputData[16].toString())));
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Select Country: " + InputData[16].toString());
+				xmlS.getlocator("//locators/R4/SiteABSelection").replace("Value", InputData[17].toString())));
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Select Country: " + InputData[17].toString());
 
 		WaitforElementtobeclickable(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "City / Town"));
 		Clear(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "City / Town")));
 		SendKeys(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "City / Town")),
-				InputData[17].toString());
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter City/Town : " + InputData[17].toString());
+				InputData[18].toString());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter City/Town : " + InputData[18].toString());
 
 		WaitforElementtobeclickable(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Postal Code"));
 		Clear(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Postal Code")));
 		SendKeys(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Postal Code")),
-				InputData[21].toString());
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Postal Code : " + InputData[21].toString());
+				InputData[22].toString());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Postal Code : " + InputData[22].toString());
 
 		WaitforElementtobeclickable(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Premises"));
 		Clear(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Premises")));
 		SendKeys(getwebelement(xmlS.getlocator("//locators/R4/SearchInput").replace("Value", "Premises")),
-				InputData[22].toString());
-		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Premises : " + InputData[22].toString());
+				InputData[23].toString());
+		ExtentTestManager.getTest().log(LogStatus.PASS, " Step: Enter Premises : " + InputData[23].toString());
 
 		WaitforElementtobeclickable(xmlS.getlocator("//locators/R4/SearchButton"));
 		Clickon(getwebelement(xmlS.getlocator("//locators/R4/SearchButton")));
@@ -457,14 +457,14 @@ public class PremiseMasterHelper extends DriverHelper
 		//Fill Building Details
 		
 		//Building  Name
-				if(InputData[20].toString().equals(null)||InputData[20].toString().equals("")) 
+				if(InputData[21].toString().equals(null)||InputData[21].toString().equals("")) 
 				{
 					temp=BuildingGeneration();
 					ExtentTestManager.getTest().log(LogStatus.PASS," Step: Building Name Generated >> "+temp);
 				}
 				else
 				{
-					temp=InputData[20].toString()+"-"+ String.valueOf(rnd.nextInt(1000));
+					temp=InputData[21].toString()+"-"+ String.valueOf(rnd.nextInt(1000));
 				}
 				SiteValues.put("BuildingName", temp);
 				ClearSendKeys(getwebelement(xml.getlocator("//locators/Siebel/BuildingName")), temp);
@@ -472,14 +472,14 @@ public class PremiseMasterHelper extends DriverHelper
 				waitforPagetobeenable();
 		
 				//House Number
-				if(InputData[18].toString().equals(null)||InputData[18].toString().equals("")) 
+				if(InputData[19].toString().equals(null)||InputData[19].toString().equals("")) 
 				{
 					temp=HouseNoGeneration();
 					ExtentTestManager.getTest().log(LogStatus.PASS," Step: House Number Generated >> "+temp);
 				}
 				else
 				{
-					temp=InputData[18].toString()+"-"+ String.valueOf(rnd.nextInt(1000));
+					temp=InputData[19].toString()+"-"+ String.valueOf(rnd.nextInt(1000));
 				}
 				ClearSendKeys(getwebelement(xml.getlocator("//locators/Siebel/RoomName")), temp);
 				ExtentTestManager.getTest().log(LogStatus.PASS," Step: Room Name Entered >> "+temp);
@@ -627,7 +627,7 @@ public class PremiseMasterHelper extends DriverHelper
 
 	public void BuildingVerificationInSiebel(HashMap<String, String> sitedetails,Object[] InputData) throws InterruptedException, DocumentException, IOException
 	{
-		String ProductName = InputData[8].toString();
+		String ProductName = InputData[9].toString();
 		
 		/*if(ProductName.equalsIgnoreCase("Ethernet Spoke")||ProductName.equalsIgnoreCase("Ethernet Hub")||ProductName.equalsIgnoreCase("Ethernet Line")||ProductName.equalsIgnoreCase("Wave"))
 		{
@@ -935,7 +935,7 @@ public class PremiseMasterHelper extends DriverHelper
 		waitForpageload();
 		waitforPagetobeenable();
 		System.out.println(gettitle());
-		String ProductName = InputData[8].toString();
+		String ProductName = InputData[9].toString();
 			if(ProductName.equalsIgnoreCase("Ethernet Spoke"))
 			{
 				WaitforElementtobeclickable(xml.getlocator("//locators/Hub/HubSiteB"));
@@ -967,7 +967,7 @@ public class PremiseMasterHelper extends DriverHelper
 		waitForpageload();
 		waitforPagetobeenable();
 		System.out.println(gettitle());
-		String ProductName = InputData[8].toString();
+		String ProductName = InputData[9].toString();
 		if(ProductName.equalsIgnoreCase("Ethernet Hub"))
 		{
 			WaitforElementtobeclickable(xml.getlocator("//locators/Hub/HubSiteA"));
@@ -984,7 +984,7 @@ public class PremiseMasterHelper extends DriverHelper
 
 	public void SiteVerifcationInSibel(Object[] InputData,String SiteID) throws DocumentException, InterruptedException, IOException 
 	{
-		String ProductName = InputData[8].toString();
+		String ProductName = InputData[9].toString();
 		/*if(ProductName.equalsIgnoreCase("Ethernet Spoke")||ProductName.equalsIgnoreCase("Ethernet Hub")||ProductName.equalsIgnoreCase("Ethernet Line")||ProductName.equalsIgnoreCase("Wave"))
 		{
 			WaitforElementtobeclickable(xml.getlocator("//locators/Hub/AddressRow"));

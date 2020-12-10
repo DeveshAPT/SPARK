@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite thread-count="1" data-provider-thread-count="1" verbose="1"
+	name="SparkAutomationExecution" annotations="JDK">
+	<listeners>
+		<listener class-name="Listners.TestListener" />
+	</listeners>
+	 <test name="New Order" junit="false" preserve-order="true">
+		<classes>
+			<class name="Testscript.NewOrders">
+				<methods>
+					<include name="EndtoEndOrderOnnet" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

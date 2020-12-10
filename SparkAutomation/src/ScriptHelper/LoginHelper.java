@@ -6,8 +6,6 @@ import org.testng.Assert;
 import com.relevantcodes.extentreports.LogStatus;
 import Driver.DriverHelper;
 import Driver.XMLReader;
-import java.io.IOException;
-
 import Reporter.ExtentTestManager;
 
 public class LoginHelper extends DriverHelper
@@ -47,6 +45,7 @@ public class LoginHelper extends DriverHelper
 //---------------------------------
 	public void Login(String Application) throws Exception
 	{
+		
 		openurl(Application);
 
 		Thread.sleep(3000);
@@ -152,4 +151,6 @@ public class LoginHelper extends DriverHelper
 		waitForpageload();
 		waitforPagetobeenable();
 	}
+
+	
 }
